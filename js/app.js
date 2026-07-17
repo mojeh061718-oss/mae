@@ -152,9 +152,8 @@ async function capture() {
   flash.classList.add('go');
   beep(1600, 0.12, 0.05);
 
-  // Capture exactly what she framed: crop to the on-screen preview aspect.
-  const stage = document.querySelector('.cam-stage');
-  const aspect = stage.clientWidth / stage.clientHeight || (video.videoWidth / video.videoHeight);
+  // Capture exactly what she framed: crop to the full-screen preview aspect.
+  const aspect = (video.clientWidth / video.clientHeight) || (video.videoWidth / video.videoHeight);
   editor.setPhoto(video, camera.isFrontFacing(), aspect);
   openEditor();
   await startNewGalleryEntry(); // auto-save the fresh photo immediately

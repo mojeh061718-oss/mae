@@ -18,31 +18,31 @@
 <body>
   <!-- ============================ CAMERA SCREEN ============================ -->
   <section id="screen-camera" class="screen active">
-    <div class="cam-topbar">
+    <!-- full-bleed live camera -->
+    <video id="video" playsinline autoplay muted></video>
+    <div id="cam-flash" class="flash"></div>
+    <div id="cam-message" class="cam-message hidden"></div>
+    <div id="countdown" class="countdown hidden">
+      <svg class="cd-ring" viewBox="0 0 100 100" aria-hidden="true">
+        <circle class="cd-track" cx="50" cy="50" r="45"></circle>
+        <circle id="cd-progress" class="cd-progress" cx="50" cy="50" r="45"></circle>
+      </svg>
+      <div id="cd-num" class="cd-num">10</div>
+    </div>
+
+    <!-- floating overlays -->
+    <div class="cam-overlay-top">
       <div class="brand">✨ Mae's Camera</div>
       <div class="top-actions">
-        <button id="btn-install" class="pill hidden" title="Install app">⬇️ Install</button>
-        <button id="btn-open-gallery" class="pill" title="My Photos">🖼️ <span id="gallery-count">0</span></button>
+        <button id="btn-install" class="glass-pill hidden" title="Install app">⬇️ Install</button>
+        <button id="btn-open-gallery" class="glass-pill" title="My Photos">🖼️ <span id="gallery-count">0</span></button>
       </div>
     </div>
 
-    <div class="cam-stage">
-      <video id="video" playsinline autoplay muted></video>
-      <div id="cam-flash" class="flash"></div>
-      <div id="cam-message" class="cam-message hidden"></div>
-      <div id="countdown" class="countdown hidden">
-        <svg class="cd-ring" viewBox="0 0 100 100" aria-hidden="true">
-          <circle class="cd-track" cx="50" cy="50" r="45"></circle>
-          <circle id="cd-progress" class="cd-progress" cx="50" cy="50" r="45"></circle>
-        </svg>
-        <div id="cd-num" class="cd-num">10</div>
-      </div>
-    </div>
-
-    <div class="cam-controls">
-      <button id="btn-timer" class="round small" title="Self timer">⏱️<span id="timer-label">Off</span></button>
+    <div class="cam-overlay-bottom">
+      <button id="btn-timer" class="cam-ctl" title="Self timer">⏱️<span id="timer-label">Off</span></button>
       <button id="btn-shutter" class="shutter" title="Take photo" aria-label="Take photo"></button>
-      <button id="btn-flip" class="round small" title="Flip camera">🔄<span>Flip</span></button>
+      <button id="btn-flip" class="cam-ctl" title="Flip camera">🔄<span>Flip</span></button>
     </div>
   </section>
 
