@@ -34,29 +34,28 @@
     <div class="cam-overlay-top">
       <div class="brand">✨ Mae's Camera</div>
       <div class="top-actions">
-        <button id="btn-install" class="glass-pill hidden" title="Install app">⬇️ Install</button>
-        <button id="btn-open-gallery" class="glass-pill" title="My Photos">🖼️ <span id="gallery-count">0</span></button>
+        <button id="btn-install" class="glass glass-pill hidden" title="Install app"><img class="ico" src="assets/ui/install.svg" alt=""> Install</button>
+        <button id="btn-open-gallery" class="glass glass-pill" title="My Photos"><img class="ico" src="assets/ui/gallery.svg" alt=""> <span id="gallery-count">0</span></button>
       </div>
     </div>
 
     <div class="cam-overlay-bottom">
-      <button id="btn-timer" class="cam-ctl" title="Self timer">⏱️<span id="timer-label">Off</span></button>
+      <button id="btn-timer" class="glass cam-ctl" title="Self timer"><img class="ico" src="assets/ui/timer.svg" alt=""><span id="timer-label">Off</span></button>
       <button id="btn-shutter" class="shutter" title="Take photo" aria-label="Take photo"></button>
-      <button id="btn-flip" class="cam-ctl" title="Flip camera">🔄<span>Flip</span></button>
+      <button id="btn-flip" class="glass cam-ctl" title="Flip camera"><img class="ico" src="assets/ui/flip.svg" alt=""><span>Flip</span></button>
     </div>
   </section>
 
   <!-- ============================ EDITOR SCREEN ============================ -->
   <section id="screen-editor" class="screen">
     <div class="ed-topbar">
-      <button id="btn-retake" class="pill">↩️ Retake</button>
+      <button id="btn-retake" class="pill"><img class="ico" src="assets/ui/retake.svg" alt=""> Retake</button>
       <div class="ed-mid">
-        <button id="btn-undo" class="pill icon" title="Undo" disabled>↶</button>
-        <button id="btn-redo" class="pill icon" title="Redo" disabled>↷</button>
-        <span id="face-badge" class="face-badge hidden">😀 0</span>
+        <button id="btn-undo" class="pill icon" title="Undo" disabled><img class="ico" src="assets/ui/undo.svg" alt=""></button>
+        <button id="btn-redo" class="pill icon" title="Redo" disabled><img class="ico" src="assets/ui/redo.svg" alt=""></button>
+        <span id="autosave-badge" class="autosave-badge"><img class="ico" src="assets/ui/done.svg" alt=""> Saved</span>
       </div>
-      <span id="autosave-badge" class="autosave-badge">💾 Auto-saved</span>
-      <button id="btn-save" class="pill primary">✓ Done</button>
+      <button id="btn-save" class="pill primary"><img class="ico" src="assets/ui/done.svg" alt=""> Done</button>
     </div>
 
     <div class="ed-stage">
@@ -71,10 +70,10 @@
     </div>
 
     <div class="ed-tabs">
-      <button class="tab active" data-tab="stickers">🎉 Stickers</button>
-      <button class="tab" data-tab="draw">🖍️ Draw</button>
-      <button class="tab" data-tab="filters">🎨 Filters</button>
-      <button class="tab" data-tab="magic">🪄 Magic</button>
+      <button class="tab active" data-tab="stickers"><img class="ico" src="assets/ui/tab-stickers.svg" alt=""> Stickers</button>
+      <button class="tab" data-tab="draw"><img class="ico" src="assets/ui/tab-draw.svg" alt=""> Draw</button>
+      <button class="tab" data-tab="filters"><img class="ico" src="assets/ui/tab-filters.svg" alt=""> Filters</button>
+      <button class="tab" data-tab="magic"><img class="ico" src="assets/ui/tab-magic.svg" alt=""> Magic</button>
     </div>
 
     <div class="ed-tray">
@@ -103,10 +102,10 @@
       <!-- Magic -->
       <div class="tray-panel" data-panel="magic">
         <div class="magic-row">
-          <button id="btn-surprise" class="big-btn">🪄 Surprise Me!</button>
-          <button id="btn-clear-stickers" class="big-btn alt">🧹 Clear Stickers</button>
+          <button id="btn-surprise" class="big-btn"><img class="ico" src="assets/ui/tab-magic.svg" alt=""> Surprise Me!</button>
+          <button id="btn-clear-stickers" class="big-btn alt">Clear Stickers</button>
         </div>
-        <p class="hint" id="magic-hint">Tap a face sticker and it jumps onto everyone in the photo! 🎩❤️</p>
+        <p class="hint" id="magic-hint">Tap a face sticker and it jumps onto everyone in the photo!</p>
       </div>
     </div>
   </section>

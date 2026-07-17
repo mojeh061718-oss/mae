@@ -2,7 +2,7 @@
 // Precaches the app shell and runtime-caches the MediaPipe model/wasm so face
 // detection keeps working offline after the first successful load.
 
-const VERSION = 'v1.1.0';
+const VERSION = 'v1.2.0';
 const SHELL_CACHE = `mae-shell-${VERSION}`;
 const CDN_CACHE = `mae-cdn-${VERSION}`;
 

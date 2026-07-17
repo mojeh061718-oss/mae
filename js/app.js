@@ -152,9 +152,9 @@ async function capture() {
   flash.classList.add('go');
   beep(1600, 0.12, 0.05);
 
-  // Capture exactly what she framed: crop to the full-screen preview aspect.
-  const aspect = (video.clientWidth / video.clientHeight) || (video.videoWidth / video.videoHeight);
-  editor.setPhoto(video, camera.isFrontFacing(), aspect);
+  // Capture a clean 3:4 portrait photo (centered crop) — a real photo shape
+  // that fills the editor nicely on both phone and iPad.
+  editor.setPhoto(video, camera.isFrontFacing(), 3 / 4);
   openEditor();
   await startNewGalleryEntry(); // auto-save the fresh photo immediately
   detectFaces();
@@ -238,12 +238,24 @@ function buildStickerCats() {
   });
 }
 
+const CATEGORY_TINT = {
+  hats: '#fff2c9',
+  eyes: '#ffd9ea',
+  animal: '#d9f5df',
+  face: '#ffe1cf',
+  mouth: '#ffd8e0',
+  cheeks: '#efdcff',
+  fun: '#d7ecff',
+};
+
 function buildStickerGrid() {
   const grid = $('#sticker-grid');
   grid.innerHTML = '';
+  const tint = CATEGORY_TINT[activeCat] || '#f3eefc';
   stickersByCategory(activeCat).forEach((s) => {
     const b = document.createElement('button');
     b.className = 'sticker-btn';
+    b.style.setProperty('--tile', tint);
     b.innerHTML = `<img src="${s.asset}" alt="${s.name}" loading="lazy"><span class="lbl">${s.name}</span>`;
     b.addEventListener('click', () => placeSticker(s));
     grid.appendChild(b);
@@ -269,7 +281,7 @@ function buildFilters() {
     b.className = 'filter-btn' + (f.id === editor.filter ? ' active' : '');
     const sw = document.createElement('span');
     sw.className = 'sw';
-    sw.textContent = '🌈';
+    // the swatch is a rainbow gradient (CSS); show the filter live on top of it
     sw.style.filter = f.css && f.css !== 'none' ? f.css : 'none';
     b.appendChild(sw);
     b.appendChild(document.createTextNode(f.name));
