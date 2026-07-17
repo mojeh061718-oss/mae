@@ -117,18 +117,31 @@ export class Editor {
 
   preloadAssets(urls) { this.assets.preload(urls); }
 
-  setPhoto(source, mirror = false) {
+  // targetAspect (width/height) crops the source "cover"-style so the saved
+  // photo matches what was framed on screen — WYSIWYG, no letterboxing.
+  setPhoto(source, mirror = false, targetAspect = null) {
     const sw = source.videoWidth || source.naturalWidth || source.width;
     const sh = source.videoHeight || source.naturalHeight || source.height;
-    const scale = Math.min(1, MAX_DIM / Math.max(sw, sh));
-    const w = Math.round(sw * scale);
-    const h = Math.round(sh * scale);
+
+    let cropX = 0, cropY = 0, cropW = sw, cropH = sh;
+    if (targetAspect && sw > 0 && sh > 0) {
+      const srcAspect = sw / sh;
+      if (srcAspect > targetAspect) {
+        cropW = sh * targetAspect; cropX = (sw - cropW) / 2;
+      } else {
+        cropH = sw / targetAspect; cropY = (sh - cropH) / 2;
+      }
+    }
+
+    const scale = Math.min(1, MAX_DIM / Math.max(cropW, cropH));
+    const w = Math.round(cropW * scale);
+    const h = Math.round(cropH * scale);
 
     for (const c of [this.canvas, this.base, this.paint]) { c.width = w; c.height = h; }
 
     this.baseCtx.save();
     if (mirror) { this.baseCtx.translate(w, 0); this.baseCtx.scale(-1, 1); }
-    this.baseCtx.drawImage(source, 0, 0, w, h);
+    this.baseCtx.drawImage(source, cropX, cropY, cropW, cropH, 0, 0, w, h);
     this.baseCtx.restore();
 
     this.paintCtx.clearRect(0, 0, w, h);

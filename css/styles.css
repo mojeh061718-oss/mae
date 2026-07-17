@@ -137,10 +137,11 @@ button { font-family: inherit; cursor: pointer; border: none; }
 }
 
 .cam-controls {
+  flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 18px 24px calc(18px + env(safe-area-inset-bottom));
+  padding: 16px 24px calc(26px + env(safe-area-inset-bottom));
   gap: 16px;
 }
 .round.small {
@@ -156,11 +157,12 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .round.small:active { transform: scale(0.9); }
 
 .shutter {
-  width: 108px; height: 108px;
+  width: 96px; height: 96px;
   border-radius: 50%;
   background: radial-gradient(circle at 50% 40%, #fff 0 58%, var(--hot) 60% 100%);
-  box-shadow: 0 0 0 8px rgba(255,255,255,.6), var(--shadow);
+  box-shadow: 0 0 0 6px rgba(255,255,255,.6), var(--shadow);
   transition: transform .08s ease;
+  flex: 0 0 auto;
 }
 .shutter:active { transform: scale(0.9); }
 
@@ -188,15 +190,16 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
 .ed-stage {
   position: relative;
-  flex: 1;
+  flex: 1 1 auto;
   display: flex; align-items: center; justify-content: center;
-  margin: 0 8px; min-height: 0;
+  margin: 4px 8px; min-height: 0;
 }
 #canvas {
   max-width: 100%;
   max-height: 100%;
-  border-radius: 16px;
-  box-shadow: var(--shadow), inset 0 0 0 5px #fff;
+  width: auto; height: auto;
+  border-radius: 18px;
+  box-shadow: var(--shadow);
   background: #fff;
   touch-action: none;
 }
@@ -217,6 +220,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .sel-toolbar .danger { background: #ffdede; }
 
 .ed-tabs {
+  flex: 0 0 auto;
   display: flex; gap: 6px; padding: 6px 10px 0;
   overflow-x: auto;
 }
@@ -233,11 +237,12 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .tab.active { background: var(--panel); box-shadow: 0 -4px 12px rgba(120,40,120,.12); }
 
 .ed-tray {
+  flex: 0 0 auto;
   background: var(--panel);
   padding: 12px;
-  padding-bottom: calc(12px + env(safe-area-inset-bottom));
-  min-height: 168px;
-  max-height: 34vh;
+  padding-bottom: calc(14px + env(safe-area-inset-bottom));
+  min-height: 150px;
+  max-height: 32vh;
   overflow-y: auto;
   box-shadow: 0 -6px 20px rgba(120,40,120,.12);
 }
@@ -361,7 +366,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 /* subtle floaty animation for the shutter to invite tapping */
 @media (prefers-reduced-motion: no-preference) {
   .shutter { animation: pulse 2.4s ease-in-out infinite; }
-  @keyframes pulse { 0%,100% { box-shadow: 0 0 0 8px rgba(255,255,255,.6), var(--shadow); } 50% { box-shadow: 0 0 0 14px rgba(255,92,200,.35), var(--shadow); } }
+  @keyframes pulse { 0%,100% { box-shadow: 0 0 0 6px rgba(255,255,255,.6), var(--shadow); } 50% { box-shadow: 0 0 0 11px rgba(255,92,200,.35), var(--shadow); } }
 }
 
 /* landscape iPad: put trays a bit shorter */
