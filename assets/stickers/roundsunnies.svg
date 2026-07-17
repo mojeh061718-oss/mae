@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="200" viewBox="0 0 440 200">
+  <defs>
+    <linearGradient id="roundsunnies_lens" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#c78bff"/>
+      <stop offset="50%" stop-color="#a05cff"/>
+      <stop offset="100%" stop-color="#ff5cc8"/>
+    </linearGradient>
+    <linearGradient id="roundsunnies_frame" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4a4a55"/>
+      <stop offset="100%" stop-color="#1a1a22"/>
+    </linearGradient>
+    <filter id="roundsunnies_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#roundsunnies_sh)">
+    <!-- arms -->
+    <path d="M64 78 L16 60 L12 76 L60 92 Z" fill="#fff"/>
+    <path d="M64 78 L20 62 L18 74 L60 88 Z" fill="url(#roundsunnies_frame)"/>
+    <path d="M376 78 L424 60 L428 76 L380 92 Z" fill="#fff"/>
+    <path d="M376 78 L420 62 L422 74 L380 88 Z" fill="url(#roundsunnies_frame)"/>
+    <!-- bridge -->
+    <path d="M188 82 Q220 70 252 82 L252 96 Q220 84 188 96 Z" fill="#fff"/>
+    <path d="M194 85 Q220 75 246 85 L246 92 Q220 82 194 92 Z" fill="url(#roundsunnies_frame)"/>
+    <!-- left lens -->
+    <circle cx="132" cy="100" r="66" fill="#fff"/>
+    <circle cx="132" cy="100" r="60" fill="url(#roundsunnies_frame)"/>
+    <circle cx="132" cy="100" r="49" fill="url(#roundsunnies_lens)"/>
+    <path d="M100 68 Q118 62 140 70 Q118 78 104 98 Q94 82 100 68 Z" fill="#fff" opacity="0.42"/>
+    <ellipse cx="150" cy="128" rx="16" ry="10" fill="#fff" opacity="0.22"/>
+    <!-- right lens -->
+    <circle cx="308" cy="100" r="66" fill="#fff"/>
+    <circle cx="308" cy="100" r="60" fill="url(#roundsunnies_frame)"/>
+    <circle cx="308" cy="100" r="49" fill="url(#roundsunnies_lens)"/>
+    <path d="M276 68 Q294 62 316 70 Q294 78 280 98 Q270 82 276 68 Z" fill="#fff" opacity="0.42"/>
+    <ellipse cx="326" cy="128" rx="16" ry="10" fill="#fff" opacity="0.22"/>
+  </g>
+</svg>

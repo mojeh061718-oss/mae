@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220">
+  <defs>
+    <filter id="sparkles_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.28"/>
+    </filter>
+    <radialGradient id="sparkles_gold" cx="42%" cy="34%" r="62%">
+      <stop offset="0%" stop-color="#ffe488"/>
+      <stop offset="55%" stop-color="#ffcf3f"/>
+      <stop offset="100%" stop-color="#ff9d1f"/>
+    </radialGradient>
+    <radialGradient id="sparkles_white" cx="42%" cy="34%" r="62%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="70%" stop-color="#f0f6ff"/>
+      <stop offset="100%" stop-color="#cfe2ff"/>
+    </radialGradient>
+    <radialGradient id="sparkles_pink" cx="42%" cy="34%" r="62%">
+      <stop offset="0%" stop-color="#ff9ad4"/>
+      <stop offset="55%" stop-color="#ff2d6f"/>
+      <stop offset="100%" stop-color="#d61458"/>
+    </radialGradient>
+  </defs>
+  <g filter="url(#sparkles_sh)">
+    <g stroke="#fff" stroke-width="10" stroke-linejoin="round">
+      <path d="M92 24 C99 66 104 71 146 78 C104 85 99 90 92 132 C85 90 80 85 38 78 C80 71 85 66 92 24 z" fill="url(#sparkles_gold)"/>
+      <path d="M160 108 C165 138 168 141 198 146 C168 151 165 154 160 184 C155 154 152 151 122 146 C152 141 155 138 160 108 z" fill="url(#sparkles_white)"/>
+      <path d="M58 128 C62 152 64 154 88 158 C64 162 62 164 58 188 C54 164 52 162 28 158 C52 154 54 152 58 128 z" fill="url(#sparkles_pink)"/>
+    </g>
+    <g fill="#ffffff">
+      <ellipse cx="82" cy="64" rx="7" ry="12" opacity="0.55"/>
+      <circle cx="154" cy="132" r="3.5" opacity="0.85"/>
+      <circle cx="52" cy="146" r="3" opacity="0.85"/>
+      <path d="M186 44 l2.5 7 7 2.5 -7 2.5 -2.5 7 -2.5 -7 -7 -2.5 7 -2.5 z" opacity="0.9"/>
+    </g>
+  </g>
+</svg>

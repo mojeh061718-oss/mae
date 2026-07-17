@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="220" viewBox="0 0 200 220">
+  <defs>
+    <linearGradient id="tongue_g1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff8fb8"/>
+      <stop offset="0.5" stop-color="#ff5c8f"/>
+      <stop offset="1" stop-color="#e02064"/>
+    </linearGradient>
+    <linearGradient id="tongue_g2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e02040"/>
+      <stop offset="1" stop-color="#a01030"/>
+    </linearGradient>
+    <linearGradient id="tongue_g3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="tongue_sh" x="-20%" y="-15%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#tongue_sh)">
+    <path fill="none" stroke="#ffffff" stroke-width="10" stroke-linejoin="round"
+      d="M46 40 Q100 22 154 40 Q168 46 164 64 Q160 84 148 96 Q160 150 128 188 Q112 206 100 206 Q88 206 72 188 Q40 150 52 96 Q40 84 36 64 Q32 46 46 40 Z"/>
+    <path fill="url(#tongue_g2)"
+      d="M46 40 Q100 22 154 40 Q168 46 164 64 Q160 84 148 96 Q100 108 52 96 Q40 84 36 64 Q32 46 46 40 Z"/>
+    <path fill="url(#tongue_g1)"
+      d="M56 72 Q100 60 144 72 Q158 130 128 180 Q112 200 100 200 Q88 200 72 180 Q42 130 56 72 Z"/>
+    <path fill="#c01850" fill-opacity="0.6" stroke="#c01850" stroke-opacity="0.3" stroke-width="2"
+      d="M100 92 Q104 140 100 190 Q96 140 100 92 Z"/>
+    <path fill="url(#tongue_g3)"
+      d="M74 96 Q90 88 100 96 Q94 140 86 168 Q76 130 74 96 Z"/>
+  </g>
+</svg>

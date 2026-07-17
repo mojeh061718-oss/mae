@@ -69,15 +69,17 @@ async function main() {
   });
   ok('photo is drawn onto the canvas', canvasHasPixels);
 
-  // 3. Place a free (draggable) sticker.
-  await page.evaluate(() => window.__mae.editor.placed.length);
+  // 2b. Auto-save created a gallery entry on capture (no manual save needed).
+  await page.waitForTimeout(400);
+  const autoCount = await page.evaluate(async () => window.__mae.gallery.count());
+  ok('photo auto-saved to gallery on capture', autoCount >= 1, `count=${autoCount}`);
+
+  // 3. Place a free (draggable) HD sticker.
   const before = await page.evaluate(() => window.__mae.editor.placed.length);
-  // switch to stickers tab, fun category, tap first sticker button
   await page.click('.tab[data-tab="stickers"]');
   await page.evaluate(() => {
-    // pick a face sticker to exercise fallback, then a free one
     window.__mae.editor.addFreeSticker(
-      { id: 't', draw: 'emoji', glyph: '⭐', scale: 0.2, faceTracked: false });
+      { id: 'star', asset: 'assets/stickers/star.svg', scale: 0.24, faceTracked: false });
   });
   const afterFree = await page.evaluate(() => window.__mae.editor.placed.length);
   ok('free sticker placed', afterFree === before + 1, `count ${before} -> ${afterFree}`);
@@ -133,17 +135,13 @@ async function main() {
   });
   ok('undo works', undoWorks);
 
-  // 8. Save -> gallery.
-  await page.evaluate(async () => { await window.__mae.gallery; });
+  // 8. Done -> autosave flush + back to camera; edits are in the gallery.
   await page.click('#btn-save');
   await page.waitForTimeout(500);
   const galleryCount = await page.evaluate(async () => window.__mae.gallery.count());
-  ok('photo saved to gallery', galleryCount >= 1, `count=${galleryCount}`);
+  ok('edited photo saved to gallery', galleryCount >= 1, `count=${galleryCount}`);
 
-  // 9. Gallery renders a saved image (return to camera first — the gallery
-  //    button lives on the camera screen).
-  await page.click('#btn-retake');
-  await page.waitForTimeout(200);
+  // 9. Gallery renders a saved image (we're back on the camera screen now).
   await page.click('#btn-open-gallery');
   await page.waitForTimeout(500);
   const hasImg = await page.evaluate(() =>

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="220" viewBox="0 0 260 220">
+  <defs>
+    <linearGradient id="butterfly_gTop" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff5cc8"/>
+      <stop offset="0.55" stop-color="#ff2d6f"/>
+      <stop offset="1" stop-color="#a05cff"/>
+    </linearGradient>
+    <linearGradient id="butterfly_gBot" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3fa9ff"/>
+      <stop offset="1" stop-color="#40e0ff"/>
+    </linearGradient>
+    <linearGradient id="butterfly_gBody" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5a4b6b"/>
+      <stop offset="1" stop-color="#2b2233"/>
+    </linearGradient>
+    <radialGradient id="butterfly_gGloss" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fff" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="butterfly_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#butterfly_sh)">
+    <!-- White die-cut outline -->
+    <g fill="none" stroke="#fff" stroke-width="10" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M130 58 C112 26 78 18 54 34 C30 50 30 82 52 96 C34 100 26 122 40 138 C56 156 96 152 130 118"/>
+      <path d="M130 58 C148 26 182 18 206 34 C230 50 230 82 208 96 C226 100 234 122 220 138 C204 156 164 152 130 118"/>
+      <path d="M130 118 C110 140 78 150 60 148 C42 146 38 168 54 180 C74 194 112 182 130 150"/>
+      <path d="M130 118 C150 140 182 150 200 148 C218 146 222 168 206 180 C186 194 148 182 130 150"/>
+      <path d="M130 46 L130 176"/>
+    </g>
+    <!-- Top wings -->
+    <path d="M130 58 C112 26 78 18 54 34 C30 50 30 82 52 96 C34 100 26 122 40 138 C56 156 96 152 130 118 Z" fill="url(#butterfly_gTop)"/>
+    <path d="M130 58 C148 26 182 18 206 34 C230 50 230 82 208 96 C226 100 234 122 220 138 C204 156 164 152 130 118 Z" fill="url(#butterfly_gTop)"/>
+    <!-- Bottom wings -->
+    <path d="M130 118 C110 140 78 150 60 148 C42 146 38 168 54 180 C74 194 112 182 130 150 Z" fill="url(#butterfly_gBot)"/>
+    <path d="M130 118 C150 140 182 150 200 148 C218 146 222 168 206 180 C186 194 148 182 130 150 Z" fill="url(#butterfly_gBot)"/>
+    <!-- Pale spots -->
+    <circle cx="66" cy="56" r="9" fill="#fff" opacity="0.85"/>
+    <circle cx="194" cy="56" r="9" fill="#fff" opacity="0.85"/>
+    <circle cx="70" cy="168" r="6" fill="#fff" opacity="0.8"/>
+    <circle cx="190" cy="168" r="6" fill="#fff" opacity="0.8"/>
+    <circle cx="92" cy="100" r="5" fill="#ffd23f" opacity="0.9"/>
+    <circle cx="168" cy="100" r="5" fill="#ffd23f" opacity="0.9"/>
+    <!-- Body -->
+    <rect x="124" y="52" width="12" height="120" rx="6" fill="url(#butterfly_gBody)"/>
+    <circle cx="130" cy="52" r="9" fill="url(#butterfly_gBody)"/>
+    <!-- Antennae -->
+    <path d="M126 46 C118 30 106 26 100 16" fill="none" stroke="#2b2233" stroke-width="4" stroke-linecap="round"/>
+    <path d="M134 46 C142 30 154 26 160 16" fill="none" stroke="#2b2233" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="99" cy="15" r="4" fill="#2b2233"/>
+    <circle cx="161" cy="15" r="4" fill="#2b2233"/>
+    <!-- Gloss highlights -->
+    <ellipse cx="78" cy="52" rx="26" ry="16" fill="url(#butterfly_gGloss)" opacity="0.5"/>
+    <ellipse cx="182" cy="52" rx="26" ry="16" fill="url(#butterfly_gGloss)" opacity="0.5"/>
+    <!-- Sparkle glints -->
+    <path d="M46 20 L49 28 L57 31 L49 34 L46 42 L43 34 L35 31 L43 28 Z" fill="#fff"/>
+    <path d="M216 118 L218 124 L224 126 L218 128 L216 134 L214 128 L208 126 L214 124 Z" fill="#fff"/>
+  </g>
+</svg>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="clownnose_g1" cx="0.4" cy="0.35" r="0.75">
+      <stop offset="0" stop-color="#ff7a7a"/>
+      <stop offset="0.5" stop-color="#ff3b3b"/>
+      <stop offset="1" stop-color="#c81f2e"/>
+    </radialGradient>
+    <radialGradient id="clownnose_g2" cx="0.35" cy="0.3" r="0.4">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="clownnose_sh" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#clownnose_sh)">
+    <circle cx="100" cy="100" r="82" fill="none" stroke="#ffffff" stroke-width="10" stroke-linejoin="round"/>
+    <circle cx="100" cy="100" r="82" fill="url(#clownnose_g1)"/>
+    <ellipse cx="128" cy="140" rx="42" ry="26" fill="#c81f2e" fill-opacity="0.5"/>
+    <ellipse cx="78" cy="72" rx="34" ry="26" fill="url(#clownnose_g2)"/>
+    <circle cx="70" cy="64" r="12" fill="#ffffff" fill-opacity="0.9"/>
+  </g>
+</svg>

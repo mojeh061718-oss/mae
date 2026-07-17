@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <defs>
+    <filter id="heart_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.28"/>
+    </filter>
+    <radialGradient id="heart_g1" cx="40%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#ff8fb0"/>
+      <stop offset="40%" stop-color="#ff3b3b"/>
+      <stop offset="100%" stop-color="#c81f3a"/>
+    </radialGradient>
+    <radialGradient id="heart_gloss" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="70%" stop-color="#ffffff" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g filter="url(#heart_sh)">
+    <path d="M100 176 C40 132 20 100 20 70 C20 44 40 26 64 26 C82 26 94 36 100 50 C106 36 118 26 136 26 C160 26 180 44 180 70 C180 100 160 132 100 176 z"
+          fill="url(#heart_g1)" stroke="#fff" stroke-width="10" stroke-linejoin="round"/>
+    <ellipse cx="72" cy="70" rx="30" ry="22" fill="url(#heart_gloss)" transform="rotate(-28 72 70)"/>
+    <ellipse cx="126" cy="128" rx="14" ry="9" fill="#ffffff" opacity="0.35" transform="rotate(-30 126 128)"/>
+  </g>
+</svg>

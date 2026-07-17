@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="200" viewBox="0 0 440 200">
+  <defs>
+    <radialGradient id="nerd_lens" cx="40%" cy="35%" r="75%">
+      <stop offset="0%" stop-color="#eaf6ff"/>
+      <stop offset="70%" stop-color="#cfe8fb"/>
+      <stop offset="100%" stop-color="#a9d3f0"/>
+    </radialGradient>
+    <linearGradient id="nerd_frame" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3a3a44"/>
+      <stop offset="100%" stop-color="#121218"/>
+    </linearGradient>
+    <filter id="nerd_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#nerd_sh)">
+    <!-- arms -->
+    <path d="M66 78 L18 62 L14 78 L62 92 Z" fill="#fff"/>
+    <path d="M66 78 L22 64 L20 76 L62 88 Z" fill="url(#nerd_frame)"/>
+    <path d="M374 78 L422 62 L426 78 L378 92 Z" fill="#fff"/>
+    <path d="M374 78 L418 64 L420 76 L378 88 Z" fill="url(#nerd_frame)"/>
+    <!-- bridge -->
+    <path d="M186 82 Q220 72 254 82 L254 98 Q220 88 186 98 Z" fill="#fff"/>
+    <path d="M192 85 Q220 76 248 85 L248 94 Q220 85 192 94 Z" fill="url(#nerd_frame)"/>
+    <!-- left round lens -->
+    <circle cx="132" cy="100" r="70" fill="#fff"/>
+    <circle cx="132" cy="100" r="64" fill="url(#nerd_frame)"/>
+    <circle cx="132" cy="100" r="50" fill="url(#nerd_lens)"/>
+    <path d="M100 70 Q120 62 142 72 Q118 80 104 102 Q92 84 100 70 Z" fill="#fff" opacity="0.5"/>
+    <!-- right round lens -->
+    <circle cx="308" cy="100" r="70" fill="#fff"/>
+    <circle cx="308" cy="100" r="64" fill="url(#nerd_frame)"/>
+    <circle cx="308" cy="100" r="50" fill="url(#nerd_lens)"/>
+    <path d="M276 70 Q296 62 318 72 Q294 80 280 102 Q268 84 276 70 Z" fill="#fff" opacity="0.5"/>
+    <!-- tape wrap on bridge -->
+    <rect x="210" y="70" width="20" height="60" rx="4" fill="#fff"/>
+    <rect x="210" y="70" width="20" height="60" rx="4" fill="#ffd23f" opacity="0.35"/>
+    <rect x="214" y="74" width="4" height="52" fill="#fff" opacity="0.55"/>
+  </g>
+</svg>

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="200" viewBox="0 0 440 200">
+  <defs>
+    <linearGradient id="heromask_g1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a05cff"/>
+      <stop offset="0.55" stop-color="#7b5cff"/>
+      <stop offset="1" stop-color="#3fa9ff"/>
+    </linearGradient>
+    <linearGradient id="heromask_g2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="heromask_g3" cx="0.5" cy="0.3" r="0.8">
+      <stop offset="0" stop-color="#c9a5ff" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#c9a5ff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="heromask_sh" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#heromask_sh)">
+    <path fill="none" stroke="#ffffff" stroke-width="10" stroke-linejoin="round"
+      d="M40 60 Q60 34 130 34 Q190 34 220 66 Q250 34 310 34 Q380 34 400 60 Q414 96 388 138 Q360 172 300 168 Q248 164 220 122 Q192 164 140 168 Q80 172 52 138 Q26 96 40 60 Z"/>
+    <path fill="url(#heromask_g1)"
+      d="M40 60 Q60 34 130 34 Q190 34 220 66 Q250 34 310 34 Q380 34 400 60 Q414 96 388 138 Q360 172 300 168 Q248 164 220 122 Q192 164 140 168 Q80 172 52 138 Q26 96 40 60 Z"/>
+    <path fill="url(#heromask_g3)"
+      d="M40 60 Q60 34 130 34 Q190 34 220 66 Q250 34 310 34 Q380 34 400 60 Q414 96 388 138 Q360 172 300 168 Q248 164 220 122 Q192 164 140 168 Q80 172 52 138 Q26 96 40 60 Z"/>
+    <path fill="#2a1a3a"
+      d="M78 78 Q108 58 150 66 Q184 74 190 96 Q180 116 140 120 Q96 122 78 100 Q70 88 78 78 Z"/>
+    <path fill="#2a1a3a"
+      d="M362 78 Q332 58 290 66 Q256 74 250 96 Q260 116 300 120 Q344 122 362 100 Q370 88 362 78 Z"/>
+    <path fill="url(#heromask_g2)"
+      d="M56 58 Q120 40 210 62 Q170 70 130 70 Q90 70 56 82 Q48 68 56 58 Z"/>
+    <ellipse cx="112" cy="80" rx="18" ry="8" fill="#ffffff" fill-opacity="0.35"/>
+    <ellipse cx="328" cy="80" rx="18" ry="8" fill="#ffffff" fill-opacity="0.35"/>
+  </g>
+</svg>

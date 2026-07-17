@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="lasereyes_core" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="35%" stop-color="#fff4c2"/>
+      <stop offset="70%" stop-color="#ffb03a"/>
+      <stop offset="100%" stop-color="#ff3b3b" stop-opacity="0.9"/>
+    </radialGradient>
+    <linearGradient id="lasereyes_beam" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff4c2" stop-opacity="0.95"/>
+      <stop offset="40%" stop-color="#ff8a1e" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#ff2d2d" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="lasereyes_glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff7a2a" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#ff2d2d" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="lasereyes_sh" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
+  </defs>
+  <g>
+    <!-- soft outer glow -->
+    <circle cx="66" cy="60" r="70" fill="url(#lasereyes_glow)"/>
+    <!-- beam shooting downward-outward -->
+    <path d="M52 46 L80 74 L180 196 L150 200 L44 78 Z" fill="url(#lasereyes_beam)"/>
+    <path d="M60 54 L74 68 L150 168 L134 176 L54 74 Z" fill="#fff4c2" opacity="0.4" filter="url(#lasereyes_sh)"/>
+    <!-- bright white-hot core -->
+    <circle cx="64" cy="58" r="34" fill="url(#lasereyes_core)"/>
+    <circle cx="64" cy="58" r="17" fill="#ffffff"/>
+    <circle cx="58" cy="52" r="7" fill="#ffffff" opacity="0.95"/>
+  </g>
+</svg>

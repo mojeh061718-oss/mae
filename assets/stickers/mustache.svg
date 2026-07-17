@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="140" viewBox="0 0 300 140">
+  <defs>
+    <linearGradient id="mustache_g1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4a3550"/>
+      <stop offset="0.5" stop-color="#2a1a3a"/>
+      <stop offset="1" stop-color="#150c1f"/>
+    </linearGradient>
+    <linearGradient id="mustache_g2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="mustache_sh" x="-15%" y="-20%" width="130%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#mustache_sh)">
+    <path fill="none" stroke="#ffffff" stroke-width="10" stroke-linejoin="round"
+      d="M150 44 Q140 30 120 30 Q112 16 96 22 Q100 12 84 14 Q60 8 40 26 Q18 46 22 74 Q26 104 62 108 Q94 110 116 88 Q134 70 150 70 Q166 70 184 88 Q206 110 238 108 Q274 104 278 74 Q282 46 260 26 Q240 8 216 14 Q200 12 204 22 Q188 16 180 30 Q160 30 150 44 Z"/>
+    <path fill="url(#mustache_g1)"
+      d="M150 44 Q140 30 120 30 Q112 16 96 22 Q100 12 84 14 Q60 8 40 26 Q18 46 22 74 Q26 104 62 108 Q94 110 116 88 Q134 70 150 70 Q166 70 184 88 Q206 110 238 108 Q274 104 278 74 Q282 46 260 26 Q240 8 216 14 Q200 12 204 22 Q188 16 180 30 Q160 30 150 44 Z"/>
+    <path fill="url(#mustache_g2)"
+      d="M70 30 Q110 22 148 48 Q112 40 84 46 Q60 50 44 66 Q42 44 70 30 Z"/>
+    <path fill="#ffffff" fill-opacity="0.3"
+      d="M230 30 Q190 22 152 48 Q188 40 216 46 Q240 50 256 66 Q258 44 230 30 Z"/>
+  </g>
+</svg>

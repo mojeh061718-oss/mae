@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
+  <defs>
+    <linearGradient id="tophat_body" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4a4a55"/>
+      <stop offset="0.4" stop-color="#2a2a33"/>
+      <stop offset="0.55" stop-color="#1a1a20"/>
+      <stop offset="1" stop-color="#0a0a0e"/>
+    </linearGradient>
+    <linearGradient id="tophat_brim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3a3a44"/>
+      <stop offset="1" stop-color="#111116"/>
+    </linearGradient>
+    <linearGradient id="tophat_band" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff6b6b"/>
+      <stop offset="0.5" stop-color="#ff3b3b"/>
+      <stop offset="1" stop-color="#b30000"/>
+    </linearGradient>
+    <filter id="tophat_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#tophat_sh)">
+    <g stroke="#fff" stroke-width="11" stroke-linejoin="round">
+      <ellipse cx="120" cy="192" rx="92" ry="24" fill="url(#tophat_brim)"/>
+      <path d="M72 60 Q72 46 120 46 Q168 46 168 60 L168 178 Q168 190 120 190 Q72 190 72 178 Z" fill="url(#tophat_body)"/>
+    </g>
+    <path d="M72 148 L168 148 L168 172 Q168 182 120 182 Q72 182 72 172 Z" fill="url(#tophat_band)"/>
+    <ellipse cx="120" cy="60" rx="48" ry="13" fill="#3a3a44"/>
+    <rect x="88" y="66" width="14" height="86" rx="7" fill="#fff" opacity="0.22"/>
+    <ellipse cx="100" cy="162" rx="6" ry="9" fill="#fff" opacity="0.35"/>
+    <ellipse cx="120" cy="192" rx="60" ry="10" fill="#fff" opacity="0.12"/>
+  </g>
+</svg>

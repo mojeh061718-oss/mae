@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="200" viewBox="0 0 260 200">
+  <defs>
+    <linearGradient id="gradcap_top" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#4a4a55"/>
+      <stop offset="0.5" stop-color="#26262e"/>
+      <stop offset="1" stop-color="#0e0e12"/>
+    </linearGradient>
+    <linearGradient id="gradcap_base" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#33333d"/>
+      <stop offset="1" stop-color="#111116"/>
+    </linearGradient>
+    <linearGradient id="gradcap_tassel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe89a"/>
+      <stop offset="0.5" stop-color="#ffcf3f"/>
+      <stop offset="1" stop-color="#e6960b"/>
+    </linearGradient>
+    <radialGradient id="gradcap_button" cx="0.4" cy="0.35" r="0.8">
+      <stop offset="0" stop-color="#fff3b0"/>
+      <stop offset="0.6" stop-color="#ffd23f"/>
+      <stop offset="1" stop-color="#e6960b"/>
+    </radialGradient>
+    <filter id="gradcap_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#gradcap_sh)">
+    <path d="M130 96 Q110 108 110 118 Q110 140 130 148 Q150 140 150 118 Q150 108 130 96 Z" fill="none" stroke="#fff" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M112 108 L148 108 L146 128 Q130 138 114 128 Z" fill="url(#gradcap_base)" stroke="#fff" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M130 70 L238 108 L130 146 L22 108 Z" fill="none" stroke="#fff" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M130 70 L238 108 L130 146 L22 108 Z" fill="url(#gradcap_top)"/>
+    <path d="M130 74 L200 99 L130 116 L60 99 Z" fill="#fff" opacity="0.16"/>
+    <circle cx="130" cy="108" r="9" fill="url(#gradcap_button)" stroke="#fff" stroke-width="3"/>
+    <path d="M130 108 Q182 96 206 100 L206 150" fill="none" stroke="url(#gradcap_tassel)" stroke-width="6" stroke-linecap="round"/>
+    <path d="M130 108 Q182 96 206 100" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+    <circle cx="206" cy="100" r="6" fill="url(#gradcap_button)" stroke="#fff" stroke-width="2.5"/>
+    <g stroke="url(#gradcap_tassel)" stroke-width="4" stroke-linecap="round">
+      <path d="M200 150 L198 176"/>
+      <path d="M206 152 L206 178"/>
+      <path d="M212 150 L214 176"/>
+    </g>
+    <ellipse cx="206" cy="150" rx="11" ry="7" fill="url(#gradcap_tassel)" stroke="#fff" stroke-width="2.5"/>
+    <ellipse cx="203" cy="147" rx="4" ry="2.5" fill="#fff" opacity="0.5"/>
+  </g>
+</svg>

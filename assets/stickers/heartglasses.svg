@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="200" viewBox="0 0 440 200">
+  <defs>
+    <linearGradient id="heartglasses_lens" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ff9cd6"/>
+      <stop offset="100%" stop-color="#ff5cc8"/>
+    </linearGradient>
+    <linearGradient id="heartglasses_frame" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#e6e6ef"/>
+    </linearGradient>
+    <filter id="heartglasses_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#heartglasses_sh)">
+    <!-- arms -->
+    <path d="M58 74 L14 58 L10 74 L54 90 Z" fill="#fff"/>
+    <path d="M382 74 L426 58 L430 74 L386 90 Z" fill="#fff"/>
+    <!-- bridge -->
+    <path d="M198 76 Q220 66 242 76 L242 90 Q220 80 198 90 Z" fill="#fff"/>
+    <path d="M203 79 Q220 71 237 79 L237 86 Q220 78 203 86 Z" fill="#f2b8dc"/>
+    <!-- left heart lens -->
+    <path d="M120 44 C104 44 92 56 92 74 C92 100 120 122 132 158 C144 122 172 100 172 74 C172 56 160 44 144 44 C136 44 132 50 132 56 C132 50 128 44 120 44 Z" fill="#fff"/>
+    <path d="M121 54 C108 54 100 63 100 76 C100 98 122 115 132 144 C142 115 164 98 164 76 C164 63 156 54 143 54 C137 54 132 59 132 64 C132 59 127 54 121 54 Z" fill="url(#heartglasses_lens)" opacity="0.85"/>
+    <path d="M114 62 C107 64 103 72 105 82 C106 88 111 86 112 80 C113 72 116 67 121 65 C126 63 121 60 114 62 Z" fill="#fff" opacity="0.5"/>
+    <path d="M150 60 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3 Z" fill="#fff" opacity="0.95"/>
+    <!-- right heart lens -->
+    <path d="M296 44 C280 44 268 56 268 74 C268 100 296 122 308 158 C320 122 348 100 348 74 C348 56 336 44 320 44 C312 44 308 50 308 56 C308 50 304 44 296 44 Z" fill="#fff"/>
+    <path d="M297 54 C284 54 276 63 276 76 C276 98 298 115 308 144 C318 115 340 98 340 76 C340 63 332 54 319 54 C313 54 308 59 308 64 C308 59 303 54 297 54 Z" fill="url(#heartglasses_lens)" opacity="0.85"/>
+    <path d="M290 62 C283 64 279 72 281 82 C282 88 287 86 288 80 C289 72 292 67 297 65 C302 63 297 60 290 62 Z" fill="#fff" opacity="0.5"/>
+  </g>
+</svg>

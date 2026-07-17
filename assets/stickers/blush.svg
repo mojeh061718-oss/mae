@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="140" viewBox="0 0 200 140">
+  <defs>
+    <radialGradient id="blush_g1" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#ff5cc8" stop-opacity="0.55"/>
+      <stop offset="55%" stop-color="#ff8fb0" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#ff8fb0" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="blush_g2" cx="42%" cy="35%" r="40%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g>
+    <ellipse cx="100" cy="70" rx="82" ry="52" fill="url(#blush_g1)"/>
+    <ellipse cx="86" cy="56" rx="34" ry="20" fill="url(#blush_g2)"/>
+    <path d="M150 40 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3 z" fill="#ffffff" opacity="0.8"/>
+  </g>
+</svg>

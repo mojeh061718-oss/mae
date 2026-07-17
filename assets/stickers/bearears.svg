@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="180" viewBox="0 0 300 180">
+  <defs>
+    <radialGradient id="bearears_body" cx="0.4" cy="0.35" r="0.8">
+      <stop offset="0" stop-color="#a9713c"/>
+      <stop offset="1" stop-color="#8b5a2b"/>
+    </radialGradient>
+    <radialGradient id="bearears_inner" cx="0.5" cy="0.45" r="0.75">
+      <stop offset="0" stop-color="#d9a869"/>
+      <stop offset="1" stop-color="#c98b4a"/>
+    </radialGradient>
+    <linearGradient id="bearears_gloss" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="bearears_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#bearears_sh)">
+    <circle cx="78" cy="92" r="66" fill="none" stroke="#ffffff" stroke-width="10"/>
+    <circle cx="222" cy="92" r="66" fill="none" stroke="#ffffff" stroke-width="10"/>
+    <circle cx="78" cy="92" r="66" fill="url(#bearears_body)"/>
+    <circle cx="222" cy="92" r="66" fill="url(#bearears_body)"/>
+    <circle cx="78" cy="98" r="36" fill="url(#bearears_inner)"/>
+    <circle cx="222" cy="98" r="36" fill="url(#bearears_inner)"/>
+    <ellipse cx="62" cy="60" rx="30" ry="22" fill="url(#bearears_gloss)"/>
+    <ellipse cx="206" cy="60" rx="30" ry="22" fill="url(#bearears_gloss)"/>
+    <ellipse cx="58" cy="52" rx="12" ry="8" fill="#ffffff" opacity="0.35"/>
+    <ellipse cx="202" cy="52" rx="12" ry="8" fill="#ffffff" opacity="0.35"/>
+  </g>
+</svg>

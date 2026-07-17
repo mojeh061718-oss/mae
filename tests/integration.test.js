@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
@@ -65,5 +65,21 @@ test('generated icons are real PNG files', () => {
     const buf = readFileSync(join(ROOT, p));
     // PNG magic number
     assert.deepEqual([...buf.subarray(0, 4)], [0x89, 0x50, 0x4e, 0x47], `${p} is not a PNG`);
+  }
+});
+
+test('every sticker SVG is well-formed, self-contained and non-trivial', () => {
+  const dir = join(ROOT, 'assets/stickers');
+  const files = readdirSync(dir).filter((f) => f.endsWith('.svg'));
+  assert.ok(files.length >= 50, `expected >= 50 svg assets, got ${files.length}`);
+  for (const f of files) {
+    const svg = readFileSync(join(dir, f), 'utf8');
+    assert.match(svg, /<svg[\s>]/, `${f} has no <svg> root`);
+    assert.match(svg, /<\/svg>/, `${f} not closed`);
+    assert.ok(svg.length > 300, `${f} looks too small to be real art`);
+    // must be self-contained (safe to inline / cache / render to canvas)
+    assert.doesNotMatch(svg, /<script/i, `${f} contains a script`);
+    assert.doesNotMatch(svg, /<image\b/i, `${f} embeds an external image`);
+    assert.doesNotMatch(svg, /https?:\/\/(?!www\.w3\.org)/i, `${f} references an external URL`);
   }
 });

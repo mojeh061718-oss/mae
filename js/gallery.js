@@ -61,6 +61,28 @@ export class Gallery {
     });
   }
 
+  // Replace the image for an existing photo (used by autosave as edits happen),
+  // keeping its original position in the gallery. Falls back to creating it.
+  async update(id, blob) {
+    const db = await this._db();
+    if (!db) {
+      const prev = this.memFallback.get(id);
+      this.memFallback.set(id, { id, blob, createdOrder: prev ? prev.createdOrder : ++idSeed });
+      return id;
+    }
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE, 'readwrite');
+      const store = tx.objectStore(STORE);
+      const getReq = store.get(id);
+      getReq.onsuccess = () => {
+        const prev = getReq.result;
+        store.put({ id, blob, createdOrder: prev ? prev.createdOrder : ++idSeed });
+      };
+      tx.oncomplete = () => resolve(id);
+      tx.onerror = () => reject(tx.error);
+    });
+  }
+
   async all() {
     const db = await this._db();
     if (!db) {

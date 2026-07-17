@@ -58,21 +58,28 @@ async function main() {
     const faces = await detector.detect(editor.base, editor.width, editor.height);
     editor.setFaces(faces);
 
-    // auto-place a crown (anchored to the top of the head)
-    const crown = { draw: 'emoji', glyph: '👑', anchor: 'crown', scale: 0.9, offsetY: -0.55, faceTracked: true };
+    const crown = { asset: 'assets/stickers/crown.svg', anchor: 'crown', scale: 0.95, offsetY: -0.55, faceTracked: true };
+    const tophat = { asset: 'assets/stickers/tophat.svg', anchor: 'crown', scale: 0.95, offsetY: -0.6, faceTracked: true };
+    const hearts = { asset: 'assets/stickers/hearteyes.svg', anchor: 'eyes', perEye: true, scale: 0.34, faceTracked: true };
+
     editor.addFaceSticker(crown);
-    // and heart eyes (one per eye)
-    const hearts = { draw: 'heart', anchor: 'eyes', perEye: true, scale: 0.32, faceTracked: true };
     editor.addFaceSticker(hearts);
+    const afterCrownHearts = editor.placed.length;
+
+    // Choosing a new hat should SWAP the crown, not stack a second hat.
+    editor.addFaceSticker(tophat);
+    const headStickers = editor.placed.filter((p) => p.slot === 'head').length;
 
     const f = faces[0];
+    const crownPlaced = editor.placed.find((p) => p.asset.includes('tophat')) || editor.placed[0];
     return {
       faceCount: faces.length,
       landmarkOk: !!f,
       eyesY: f ? f.anchors.eyesCenter.y : null,
-      crownY: editor.placed[0] ? editor.placed[0].y : null,
+      hatY: crownPlaced ? crownPlaced.y : null,
+      afterCrownHearts,
+      headStickers,
       placedCount: editor.placed.length,
-      width: editor.width, height: editor.height,
     };
   }, IMG);
 
@@ -81,10 +88,12 @@ async function main() {
 
   ok('detected at least one face', result.faceCount >= 1, `faces=${result.faceCount}`);
   ok('face landmarks produced metrics', result.landmarkOk);
-  ok('crown auto-placed above the eyes',
-    result.crownY != null && result.eyesY != null && result.crownY < result.eyesY,
-    `crownY=${Math.round(result.crownY)} < eyesY=${Math.round(result.eyesY)}`);
-  ok('crown + 2 heart eyes placed (3 stickers)', result.placedCount === 3, `placed=${result.placedCount}`);
+  ok('hat auto-placed above the eyes',
+    result.hatY != null && result.eyesY != null && result.hatY < result.eyesY,
+    `hatY=${Math.round(result.hatY)} < eyesY=${Math.round(result.eyesY)}`);
+  ok('crown + 2 heart eyes = 3 stickers', result.afterCrownHearts === 3, `placed=${result.afterCrownHearts}`);
+  ok('new hat SWAPS old hat (one per zone)', result.headStickers === 1, `head stickers=${result.headStickers}`);
+  ok('after swap: tophat + 2 heart eyes = 3', result.placedCount === 3, `placed=${result.placedCount}`);
   ok('no page errors', errs.length === 0, errs.slice(0, 2).join(' | '));
 
   await browser.close();

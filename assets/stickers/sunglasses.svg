@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="200" viewBox="0 0 440 200">
+  <defs>
+    <linearGradient id="sunglasses_lens" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7cc4ff"/>
+      <stop offset="50%" stop-color="#3fa9ff"/>
+      <stop offset="100%" stop-color="#1c5fb0"/>
+    </linearGradient>
+    <linearGradient id="sunglasses_gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffe17a"/>
+      <stop offset="50%" stop-color="#ffcf3f"/>
+      <stop offset="100%" stop-color="#ffb300"/>
+    </linearGradient>
+    <filter id="sunglasses_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#sunglasses_sh)">
+    <!-- arm hints -->
+    <path d="M60 66 L18 52 L14 66 L58 82 Z" fill="#fff"/>
+    <path d="M60 66 L22 54 L20 64 L58 78 Z" fill="url(#sunglasses_gold)"/>
+    <path d="M380 66 L422 52 L426 66 L382 82 Z" fill="#fff"/>
+    <path d="M380 66 L418 54 L420 64 L382 78 Z" fill="url(#sunglasses_gold)"/>
+    <!-- bridge -->
+    <path d="M205 78 Q220 66 235 78 L235 90 Q220 80 205 90 Z" fill="#fff"/>
+    <path d="M209 80 Q220 71 231 80 L231 86 Q220 78 209 86 Z" fill="url(#sunglasses_gold)"/>
+    <!-- left teardrop frame -->
+    <path d="M70 70 Q140 66 200 78 Q206 112 168 138 Q118 150 88 128 Q64 108 70 70 Z" fill="#fff"/>
+    <path d="M80 78 Q142 74 194 84 Q198 110 165 130 Q120 142 94 122 Q76 104 80 78 Z" fill="url(#sunglasses_gold)"/>
+    <path d="M90 84 Q142 82 187 90 Q190 110 160 126 Q120 136 98 118 Q84 102 90 84 Z" fill="url(#sunglasses_lens)"/>
+    <path d="M104 90 L150 122 L138 128 L96 100 Z" fill="#fff" opacity="0.4"/>
+    <path d="M120 88 L156 116 L148 120 L114 94 Z" fill="#fff" opacity="0.3"/>
+    <!-- right teardrop frame -->
+    <path d="M370 70 Q300 66 240 78 Q234 112 272 138 Q322 150 352 128 Q376 108 370 70 Z" fill="#fff"/>
+    <path d="M360 78 Q298 74 246 84 Q242 110 275 130 Q320 142 346 122 Q364 104 360 78 Z" fill="url(#sunglasses_gold)"/>
+    <path d="M350 84 Q298 82 253 90 Q250 110 280 126 Q320 136 342 118 Q356 102 350 84 Z" fill="url(#sunglasses_lens)"/>
+    <path d="M264 90 L310 122 L298 128 L256 100 Z" fill="#fff" opacity="0.4"/>
+    <path d="M280 88 L316 116 L308 120 L274 94 Z" fill="#fff" opacity="0.3"/>
+  </g>
+</svg>

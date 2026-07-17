@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="220" viewBox="0 0 200 220">
+  <defs>
+    <linearGradient id="cupcake_gWrap" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd23f"/>
+      <stop offset="1" stop-color="#ff7a00"/>
+    </linearGradient>
+    <radialGradient id="cupcake_gFrost" cx="0.4" cy="0.3" r="0.85">
+      <stop offset="0" stop-color="#ff9fd8"/>
+      <stop offset="0.6" stop-color="#ff5cc8"/>
+      <stop offset="1" stop-color="#ff2d6f"/>
+    </radialGradient>
+    <radialGradient id="cupcake_gCherry" cx="0.4" cy="0.35" r="0.7">
+      <stop offset="0" stop-color="#ff6b6b"/>
+      <stop offset="1" stop-color="#e01e37"/>
+    </radialGradient>
+    <radialGradient id="cupcake_gGloss" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fff" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="cupcake_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#cupcake_sh)">
+    <!-- White die-cut silhouette -->
+    <g fill="none" stroke="#fff" stroke-width="10" stroke-linejoin="round">
+      <path d="M58 118 L68 200 C70 208 78 210 100 210 C122 210 130 208 132 200 L142 118 Z"/>
+      <path d="M100 40 C126 40 146 56 146 78 C158 82 162 100 150 110 C154 124 140 136 124 130 C124 130 110 122 100 122 C90 122 76 130 76 130 C60 136 46 124 50 110 C38 100 42 82 54 78 C54 56 74 40 100 40 Z"/>
+    </g>
+    <!-- Wrapper -->
+    <path d="M58 118 L68 200 C70 208 78 210 100 210 C122 210 130 208 132 200 L142 118 Z" fill="url(#cupcake_gWrap)"/>
+    <!-- Wrapper stripes -->
+    <g stroke="#c96a00" stroke-width="5" opacity="0.55" fill="none">
+      <path d="M74 122 L79 204"/><path d="M88 122 L90 208"/><path d="M100 122 L100 210"/>
+      <path d="M112 122 L110 208"/><path d="M126 122 L121 204"/>
+    </g>
+    <!-- Frosting -->
+    <path d="M100 40 C126 40 146 56 146 78 C158 82 162 100 150 110 C154 124 140 136 124 130 C124 130 110 122 100 122 C90 122 76 130 76 130 C60 136 46 124 50 110 C38 100 42 82 54 78 C54 56 74 40 100 40 Z" fill="url(#cupcake_gFrost)"/>
+    <!-- Frosting swirl shading -->
+    <g stroke="#e01e88" stroke-width="4" opacity="0.35" fill="none" stroke-linecap="round">
+      <path d="M64 100 C80 92 120 92 136 100"/>
+      <path d="M70 116 C86 108 114 108 130 116"/>
+    </g>
+    <!-- Frosting gloss -->
+    <ellipse cx="82" cy="62" rx="18" ry="12" fill="url(#cupcake_gGloss)" opacity="0.8"/>
+    <!-- Sprinkles -->
+    <g stroke-width="4.5" stroke-linecap="round">
+      <path d="M78 82 l6 5" stroke="#ffd23f"/>
+      <path d="M118 78 l-5 6" stroke="#3fa9ff"/>
+      <path d="M100 96 l6 3" stroke="#a05cff"/>
+      <path d="M90 108 l-6 3" stroke="#4cd964"/>
+      <path d="M126 100 l4 6" stroke="#40e0ff"/>
+      <path d="M66 96 l5 5" stroke="#ff7a00"/>
+    </g>
+    <!-- Cherry -->
+    <circle cx="100" cy="34" r="14" fill="none" stroke="#fff" stroke-width="8"/>
+    <circle cx="100" cy="34" r="14" fill="url(#cupcake_gCherry)"/>
+    <circle cx="94" cy="29" r="4" fill="#fff" opacity="0.85"/>
+    <path d="M100 20 C104 8 116 6 122 12" fill="none" stroke="#4cd964" stroke-width="4" stroke-linecap="round"/>
+  </g>
+</svg>

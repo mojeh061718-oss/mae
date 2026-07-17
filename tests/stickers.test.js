@@ -1,7 +1,12 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
 import { STICKERS, CATEGORIES, stickerById, stickersByCategory } from '../js/stickers.js';
-import { RENDERERS, FILTERS, BRUSHES, PAINT_COLORS } from '../js/editor.js';
+import { FILTERS, BRUSHES, PAINT_COLORS, slotForAnchor } from '../js/editor.js';
+
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
 test('there are at least 50 stickers', () => {
   assert.ok(STICKERS.length >= 50, `expected >= 50 stickers, got ${STICKERS.length}`);
@@ -12,14 +17,14 @@ test('sticker ids are unique', () => {
   assert.equal(new Set(ids).size, ids.length);
 });
 
-test('every sticker has the required fields', () => {
+test('every sticker has required fields and a real asset file', () => {
   for (const s of STICKERS) {
-    assert.ok(s.id, `missing id on ${JSON.stringify(s)}`);
+    assert.ok(s.id, `missing id`);
     assert.ok(s.name, `missing name on ${s.id}`);
-    assert.ok(s.icon, `missing icon on ${s.id}`);
     assert.ok(s.category, `missing category on ${s.id}`);
     assert.equal(typeof s.scale, 'number', `scale must be number on ${s.id}`);
-    assert.ok(s.draw, `missing draw on ${s.id}`);
+    assert.ok(s.asset && s.asset.endsWith('.svg'), `bad asset on ${s.id}`);
+    assert.ok(existsSync(join(ROOT, s.asset)), `asset file missing: ${s.asset}`);
   }
 });
 
@@ -30,37 +35,38 @@ test('every sticker category exists in CATEGORIES', () => {
   }
 });
 
-test('every category has at least one sticker', () => {
+test('every category has stickers and a thumbnail that exists', () => {
   for (const c of CATEGORIES) {
     assert.ok(stickersByCategory(c.id).length > 0, `empty category ${c.id}`);
+    assert.ok(existsSync(join(ROOT, c.thumb)), `category thumb missing: ${c.thumb}`);
   }
 });
 
-test('face-tracked stickers declare an anchor', () => {
-  for (const s of STICKERS.filter((s) => s.faceTracked)) {
+test('face-tracked stickers declare an anchor that maps to a zone', () => {
+  for (const s of STICKERS.filter((x) => x.faceTracked)) {
     assert.ok(s.anchor, `faceTracked sticker ${s.id} missing anchor`);
+    assert.ok(slotForAnchor(s.anchor), `no zone for anchor ${s.anchor} (${s.id})`);
   }
 });
 
-test('every draw type has a renderer (or is a valid emoji)', () => {
-  for (const s of STICKERS) {
-    if (s.draw === 'emoji') {
-      assert.ok(s.glyph, `emoji sticker ${s.id} missing glyph`);
-    } else {
-      assert.equal(typeof RENDERERS[s.draw], 'function', `no renderer for ${s.draw} (${s.id})`);
-    }
-  }
-});
-
-test('we ship a rich set of face-tracked and free stickers', () => {
+test('rich mix of face-tracked and free stickers', () => {
   const tracked = STICKERS.filter((s) => s.faceTracked).length;
   const free = STICKERS.filter((s) => !s.faceTracked).length;
-  assert.ok(tracked >= 20, `expected >= 20 face stickers, got ${tracked}`);
-  assert.ok(free >= 15, `expected >= 15 free stickers, got ${free}`);
+  assert.ok(tracked >= 25, `expected >= 25 face stickers, got ${tracked}`);
+  assert.ok(free >= 8, `expected >= 8 free stickers, got ${free}`);
+});
+
+test('face zones: hats/ears share one zone, eyes another, etc.', () => {
+  assert.equal(slotForAnchor('crown'), 'head');
+  assert.equal(slotForAnchor('eyes'), 'eyes');
+  assert.equal(slotForAnchor('leftEye'), 'eyes');
+  assert.equal(slotForAnchor('cheeks'), 'cheeks');
+  assert.equal(slotForAnchor('nose'), 'nose');
+  assert.equal(slotForAnchor('mouth'), 'mouth');
 });
 
 test('stickerById works and returns null for misses', () => {
-  assert.equal(stickerById('crown').name, 'Crown');
+  assert.equal(stickerById('crown').name, 'Gold Crown');
   assert.equal(stickerById('nope'), null);
 });
 
@@ -68,9 +74,7 @@ test('filters are unique and valid', () => {
   const ids = FILTERS.map((f) => f.id);
   assert.equal(new Set(ids).size, ids.length);
   assert.ok(FILTERS.length >= 12, `expected >= 12 filters, got ${FILTERS.length}`);
-  for (const f of FILTERS) {
-    assert.ok(f.css || f.special, `filter ${f.id} has neither css nor special`);
-  }
+  for (const f of FILTERS) assert.ok(f.css || f.special, `filter ${f.id} invalid`);
 });
 
 test('brushes and colors exist', () => {

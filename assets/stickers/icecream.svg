@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="260" viewBox="0 0 180 260">
+  <defs>
+    <linearGradient id="icecream_gCone" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e0a86a"/>
+      <stop offset="1" stop-color="#c98b4a"/>
+    </linearGradient>
+    <radialGradient id="icecream_gPink" cx="0.4" cy="0.35" r="0.75">
+      <stop offset="0" stop-color="#ff9fd8"/>
+      <stop offset="1" stop-color="#ff5cc8"/>
+    </radialGradient>
+    <radialGradient id="icecream_gMint" cx="0.4" cy="0.35" r="0.75">
+      <stop offset="0" stop-color="#c4f4dd"/>
+      <stop offset="1" stop-color="#9be7c4"/>
+    </radialGradient>
+    <radialGradient id="icecream_gCherry" cx="0.4" cy="0.35" r="0.7">
+      <stop offset="0" stop-color="#ff6b6b"/>
+      <stop offset="1" stop-color="#e01e37"/>
+    </radialGradient>
+    <radialGradient id="icecream_gGloss" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fff" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="icecream_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#icecream_sh)">
+    <!-- White die-cut silhouette -->
+    <g fill="none" stroke="#fff" stroke-width="10" stroke-linejoin="round">
+      <path d="M62 128 L90 248 L118 128 Z"/>
+      <path d="M90 66 C64 66 46 84 46 106 C46 124 66 134 90 134 C114 134 134 124 134 106 C134 84 116 66 90 66 Z"/>
+      <path d="M90 40 C70 40 56 56 56 78 C56 96 72 108 90 108 C108 108 124 96 124 78 C124 56 110 40 90 40 Z"/>
+    </g>
+    <!-- Cone -->
+    <path d="M62 128 L90 248 L118 128 Z" fill="url(#icecream_gCone)"/>
+    <!-- Cross-hatch -->
+    <g stroke="#a06b34" stroke-width="2.5" opacity="0.6" fill="none">
+      <path d="M70 140 L84 128"/><path d="M78 168 L104 140"/><path d="M84 196 L114 158"/>
+      <path d="M90 224 L118 186"/>
+      <path d="M110 140 L96 128"/><path d="M102 168 L76 140"/><path d="M96 196 L66 158"/>
+      <path d="M90 224 L64 186"/>
+    </g>
+    <!-- Mint scoop (bottom) -->
+    <path d="M90 66 C64 66 46 84 46 106 C46 124 66 134 90 134 C114 134 134 124 134 106 C134 84 116 66 90 66 Z" fill="url(#icecream_gMint)"/>
+    <ellipse cx="70" cy="88" rx="16" ry="10" fill="url(#icecream_gGloss)" opacity="0.7"/>
+    <!-- Pink scoop (top) -->
+    <path d="M90 40 C70 40 56 56 56 78 C56 96 72 108 90 108 C108 108 124 96 124 78 C124 56 110 40 90 40 Z" fill="url(#icecream_gPink)"/>
+    <ellipse cx="74" cy="60" rx="14" ry="9" fill="url(#icecream_gGloss)" opacity="0.8"/>
+    <!-- Sprinkles -->
+    <g stroke-width="4" stroke-linecap="round">
+      <path d="M64 96 l6 4" stroke="#ffd23f"/>
+      <path d="M108 100 l-5 5" stroke="#3fa9ff"/>
+      <path d="M96 118 l6 2" stroke="#a05cff"/>
+      <path d="M74 76 l4 6" stroke="#ff7a00"/>
+      <path d="M104 70 l-6 3" stroke="#4cd964"/>
+    </g>
+    <!-- Cherry -->
+    <circle cx="90" cy="30" r="12" fill="none" stroke="#fff" stroke-width="8"/>
+    <circle cx="90" cy="30" r="12" fill="url(#icecream_gCherry)"/>
+    <circle cx="85" cy="26" r="3.5" fill="#fff" opacity="0.85"/>
+    <path d="M90 18 C94 8 104 6 110 10" fill="none" stroke="#4cd964" stroke-width="4" stroke-linecap="round"/>
+  </g>
+</svg>

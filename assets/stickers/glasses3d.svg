@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="200" viewBox="0 0 440 200">
+  <defs>
+    <linearGradient id="glasses3d_red" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ff7a7a"/>
+      <stop offset="100%" stop-color="#e01414"/>
+    </linearGradient>
+    <linearGradient id="glasses3d_cyan" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8ff0ff"/>
+      <stop offset="100%" stop-color="#12c4e6"/>
+    </linearGradient>
+    <linearGradient id="glasses3d_frame" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#dcdce6"/>
+    </linearGradient>
+    <filter id="glasses3d_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#glasses3d_sh)">
+    <!-- arms -->
+    <path d="M60 74 L16 60 L12 76 L56 90 Z" fill="#fff"/>
+    <path d="M380 74 L424 60 L428 76 L384 90 Z" fill="#fff"/>
+    <!-- full white frame body -->
+    <rect x="60" y="60" width="320" height="84" rx="18" fill="#fff"/>
+    <rect x="66" y="66" width="308" height="72" rx="14" fill="url(#glasses3d_frame)"/>
+    <!-- left red lens -->
+    <rect x="80" y="76" width="120" height="52" rx="10" fill="url(#glasses3d_red)"/>
+    <path d="M92 82 L150 82 L110 122 L88 122 Z" fill="#fff" opacity="0.28"/>
+    <!-- right cyan lens -->
+    <rect x="240" y="76" width="120" height="52" rx="10" fill="url(#glasses3d_cyan)"/>
+    <path d="M252 82 L310 82 L270 122 L248 122 Z" fill="#fff" opacity="0.32"/>
+    <!-- bridge -->
+    <rect x="200" y="82" width="40" height="16" rx="6" fill="url(#glasses3d_frame)"/>
+    <rect x="204" y="84" width="32" height="4" rx="2" fill="#fff" opacity="0.7"/>
+  </g>
+</svg>

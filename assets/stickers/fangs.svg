@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="180" viewBox="0 0 220 180">
+  <defs>
+    <linearGradient id="fangs_g1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff8fb8"/>
+      <stop offset="1" stop-color="#ff5cc8"/>
+    </linearGradient>
+    <linearGradient id="fangs_g2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.7" stop-color="#f2f2f5"/>
+      <stop offset="1" stop-color="#d8d8e0"/>
+    </linearGradient>
+    <linearGradient id="fangs_g3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="fangs_sh" x="-20%" y="-15%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#fangs_sh)">
+    <path fill="none" stroke="#ffffff" stroke-width="10" stroke-linejoin="round"
+      d="M40 42 Q110 24 180 42 Q188 58 176 76 Q150 70 150 70 Q140 118 118 150 Q104 168 96 150 Q78 116 70 70 Q70 70 44 76 Q32 58 40 42 Z"/>
+    <path fill="url(#fangs_g1)"
+      d="M40 42 Q110 24 180 42 Q188 62 172 78 Q140 66 110 68 Q80 66 48 78 Q32 62 40 42 Z"/>
+    <path fill="url(#fangs_g2)"
+      d="M74 62 Q92 58 106 64 Q104 112 96 142 Q90 156 84 142 Q76 108 74 62 Z"/>
+    <path fill="url(#fangs_g2)"
+      d="M146 62 Q128 58 114 64 Q116 112 124 142 Q130 156 136 142 Q144 108 146 62 Z"/>
+    <path fill="url(#fangs_g3)" d="M82 66 Q90 64 94 70 Q92 100 88 118 Q84 100 82 66 Z"/>
+    <path fill="url(#fangs_g3)" d="M138 66 Q130 64 126 70 Q128 100 132 118 Q136 100 138 66 Z"/>
+    <path fill="#ffffff" fill-opacity="0.4" d="M70 44 Q110 36 150 44 Q110 50 70 44 Z"/>
+  </g>
+</svg>

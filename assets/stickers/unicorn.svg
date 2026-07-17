@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="240" viewBox="0 0 260 240">
+  <defs>
+    <linearGradient id="unicorn_horn" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe58a"/>
+      <stop offset="0.5" stop-color="#ffcf3f"/>
+      <stop offset="1" stop-color="#e0a41f"/>
+    </linearGradient>
+    <linearGradient id="unicorn_ear" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#efe6f2"/>
+    </linearGradient>
+    <radialGradient id="unicorn_earin" cx="0.5" cy="0.4" r="0.7">
+      <stop offset="0" stop-color="#ffd7e3"/>
+      <stop offset="1" stop-color="#ffb6c1"/>
+    </radialGradient>
+    <linearGradient id="unicorn_gloss" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="unicorn_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#unicorn_sh)">
+    <path d="M74,188 Q58,150 66,120 Q76,96 96,110 Q108,140 106,182 Z" fill="none" stroke="#ffffff" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M186,188 Q202,150 194,120 Q184,96 164,110 Q152,140 154,182 Z" fill="none" stroke="#ffffff" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M130,26 L150,178 Q130,196 110,178 Z" fill="none" stroke="#ffffff" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M74,188 Q58,150 66,120 Q76,96 96,110 Q108,140 106,182 Z" fill="url(#unicorn_ear)"/>
+    <path d="M186,188 Q202,150 194,120 Q184,96 164,110 Q152,140 154,182 Z" fill="url(#unicorn_ear)"/>
+    <path d="M82,178 Q72,146 80,124 Q90,112 98,130 Q102,154 100,176 Z" fill="url(#unicorn_earin)"/>
+    <path d="M178,178 Q188,146 180,124 Q170,112 162,130 Q158,154 160,176 Z" fill="url(#unicorn_earin)"/>
+    <path d="M130,26 L150,178 Q130,196 110,178 Z" fill="url(#unicorn_horn)"/>
+    <path d="M130,40 L120,120 M130,40 L140,120 M124,132 L136,132 M118,160 L142,160" stroke="#e0a41f" stroke-width="4" stroke-linecap="round" fill="none" opacity="0.7"/>
+    <path d="M126,34 L134,150 Q128,158 122,150 Z" fill="url(#unicorn_gloss)"/>
+    <circle cx="104" cy="192" r="11" fill="#a05cff"/>
+    <circle cx="104" cy="192" r="5" fill="#ffd23f"/>
+    <circle cx="158" cy="196" r="10" fill="#3fa9ff"/>
+    <circle cx="158" cy="196" r="4.5" fill="#ffd23f"/>
+    <g fill="#ffffff">
+      <path d="M198,60 l4,10 10,4 -10,4 -4,10 -4,-10 -10,-4 10,-4 z" opacity="0.9"/>
+      <path d="M56,86 l3,7 7,3 -7,3 -3,7 -3,-7 -7,-3 7,-3 z" opacity="0.85"/>
+      <circle cx="176" cy="34" r="4"/>
+    </g>
+  </g>
+</svg>

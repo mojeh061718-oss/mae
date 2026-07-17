@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="260" viewBox="0 0 180 260">
+  <defs>
+    <radialGradient id="balloon_gBody" cx="0.38" cy="0.32" r="0.75">
+      <stop offset="0" stop-color="#ff7a8f"/>
+      <stop offset="0.5" stop-color="#ff3b3b"/>
+      <stop offset="1" stop-color="#d61e4c"/>
+    </radialGradient>
+    <linearGradient id="balloon_gKnot" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff3b3b"/>
+      <stop offset="1" stop-color="#c01838"/>
+    </linearGradient>
+    <radialGradient id="balloon_gGloss" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fff" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="balloon_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#balloon_sh)">
+    <!-- String -->
+    <path d="M90 196 C82 214 100 224 92 238 C86 248 96 254 90 258" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round"/>
+    <path d="M90 196 C82 214 100 224 92 238 C86 248 96 254 90 258" fill="none" stroke="#ff2d6f" stroke-width="3.5" stroke-linecap="round"/>
+    <!-- Balloon body with white die-cut -->
+    <path d="M90 20 C130 20 156 52 156 96 C156 140 124 184 90 190 C56 184 24 140 24 96 C24 52 50 20 90 20 Z" fill="none" stroke="#fff" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M90 20 C130 20 156 52 156 96 C156 140 124 184 90 190 C56 184 24 140 24 96 C24 52 50 20 90 20 Z" fill="url(#balloon_gBody)"/>
+    <!-- Knot -->
+    <path d="M90 188 L80 202 C84 208 96 208 100 202 Z" fill="none" stroke="#fff" stroke-width="8" stroke-linejoin="round"/>
+    <path d="M90 188 L80 202 C84 208 96 208 100 202 Z" fill="url(#balloon_gKnot)"/>
+    <!-- Gloss highlight -->
+    <ellipse cx="66" cy="62" rx="20" ry="30" fill="url(#balloon_gGloss)" opacity="0.85" transform="rotate(-20 66 62)"/>
+    <ellipse cx="112" cy="140" rx="8" ry="16" fill="#fff" opacity="0.3"/>
+    <!-- Sparkle -->
+    <path d="M120 44 L123 52 L131 55 L123 58 L120 66 L117 58 L109 55 L117 52 Z" fill="#fff"/>
+  </g>
+</svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200">
+  <defs>
+    <linearGradient id="catears_body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff5cc8"/>
+      <stop offset="1" stop-color="#ff2d6f"/>
+    </linearGradient>
+    <radialGradient id="catears_inner" cx="0.5" cy="0.35" r="0.75">
+      <stop offset="0" stop-color="#ffd7e3"/>
+      <stop offset="1" stop-color="#ffb6c1"/>
+    </radialGradient>
+    <linearGradient id="catears_gloss" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="catears_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#catears_sh)">
+    <path d="M40,178 Q32,86 82,26 Q104,58 134,176 Z" fill="none" stroke="#ffffff" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M260,178 Q268,86 218,26 Q196,58 166,176 Z" fill="none" stroke="#ffffff" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M40,178 Q32,86 82,26 Q104,58 134,176 Z" fill="url(#catears_body)"/>
+    <path d="M260,178 Q268,86 218,26 Q196,58 166,176 Z" fill="url(#catears_body)"/>
+    <path d="M66,162 Q62,98 88,58 Q104,92 116,160 Z" fill="url(#catears_inner)"/>
+    <path d="M234,162 Q238,98 212,58 Q196,92 184,160 Z" fill="url(#catears_inner)"/>
+    <path d="M52,150 Q44,92 80,42 Q92,64 74,150 Z" fill="url(#catears_gloss)"/>
+    <path d="M248,150 Q256,92 220,42 Q208,64 226,150 Z" fill="url(#catears_gloss)"/>
+    <ellipse cx="70" cy="70" rx="8" ry="16" fill="#ffffff" opacity="0.35" transform="rotate(-20 70 70)"/>
+    <ellipse cx="230" cy="70" rx="8" ry="16" fill="#ffffff" opacity="0.35" transform="rotate(20 230 70)"/>
+  </g>
+</svg>

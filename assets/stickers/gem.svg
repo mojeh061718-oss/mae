@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="gem_gTable" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9be7ff"/>
+      <stop offset="1" stop-color="#40e0ff"/>
+    </linearGradient>
+    <linearGradient id="gem_gCrownL" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7cc4ff"/>
+      <stop offset="1" stop-color="#3fa9ff"/>
+    </linearGradient>
+    <linearGradient id="gem_gCrownR" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5fb6ff"/>
+      <stop offset="1" stop-color="#2f8fe0"/>
+    </linearGradient>
+    <linearGradient id="gem_gPav" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#40e0ff"/>
+      <stop offset="1" stop-color="#1f7fc0"/>
+    </linearGradient>
+    <linearGradient id="gem_gPavR" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3fa9ff"/>
+      <stop offset="1" stop-color="#155f9c"/>
+    </linearGradient>
+    <filter id="gem_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#gem_sh)">
+    <!-- White die-cut outline -->
+    <path d="M44 66 L68 42 L132 42 L156 66 L100 172 Z" fill="none" stroke="#fff" stroke-width="12" stroke-linejoin="round"/>
+    <!-- Pavilion (lower cone) -->
+    <path d="M44 66 L100 172 L100 66 Z" fill="url(#gem_gPav)"/>
+    <path d="M156 66 L100 172 L100 66 Z" fill="url(#gem_gPavR)"/>
+    <path d="M44 66 L72 66 L100 172 Z" fill="#2f8fe0" opacity="0.5"/>
+    <path d="M156 66 L128 66 L100 172 Z" fill="#155f9c" opacity="0.5"/>
+    <!-- Crown left facets -->
+    <path d="M44 66 L68 42 L84 66 Z" fill="url(#gem_gCrownL)"/>
+    <path d="M84 66 L68 42 L100 42 L100 66 Z" fill="url(#gem_gTable)"/>
+    <!-- Crown right facets -->
+    <path d="M156 66 L132 42 L116 66 Z" fill="url(#gem_gCrownR)"/>
+    <path d="M116 66 L132 42 L100 42 L100 66 Z" fill="url(#gem_gCrownL)"/>
+    <!-- Table facet -->
+    <path d="M68 42 L132 42 L116 66 L84 66 Z" fill="url(#gem_gTable)"/>
+    <!-- Girdle facet edges / shading lines -->
+    <g stroke="#e6faff" stroke-width="2.5" opacity="0.7" fill="none" stroke-linecap="round">
+      <path d="M44 66 L156 66"/>
+      <path d="M84 66 L100 42"/>
+      <path d="M116 66 L100 42"/>
+      <path d="M72 66 L100 172"/>
+      <path d="M128 66 L100 172"/>
+      <path d="M100 66 L100 172"/>
+    </g>
+    <!-- Gloss highlight on table -->
+    <path d="M76 48 L110 48 L102 60 L82 60 Z" fill="#fff" opacity="0.35"/>
+    <path d="M50 66 L64 66 L92 150 Z" fill="#fff" opacity="0.15"/>
+    <!-- Sparkle glint -->
+    <path d="M138 34 L142 46 L154 50 L142 54 L138 66 L134 54 L122 50 L134 46 Z" fill="#fff"/>
+    <circle cx="60" cy="80" r="3" fill="#fff"/>
+  </g>
+</svg>

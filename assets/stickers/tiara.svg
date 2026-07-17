@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="220" viewBox="0 0 240 220">
+  <defs>
+    <linearGradient id="tiara_silver" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.5" stop-color="#dfe6f0"/>
+      <stop offset="1" stop-color="#9fb0c8"/>
+    </linearGradient>
+    <linearGradient id="tiara_gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe89a"/>
+      <stop offset="1" stop-color="#e6960b"/>
+    </linearGradient>
+    <radialGradient id="tiara_heart" cx="0.35" cy="0.3" r="0.8">
+      <stop offset="0" stop-color="#ffb3e0"/>
+      <stop offset="0.5" stop-color="#ff5cc8"/>
+      <stop offset="1" stop-color="#b3168c"/>
+    </radialGradient>
+    <radialGradient id="tiara_dia" cx="0.35" cy="0.3" r="0.8">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.6" stop-color="#cfe6ff"/>
+      <stop offset="1" stop-color="#7cc4ff"/>
+    </radialGradient>
+    <filter id="tiara_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#tiara_sh)">
+    <path d="M28 165 Q28 70 120 55 Q212 70 212 165" fill="none" stroke="#fff" stroke-width="26" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M28 165 Q28 70 120 55 Q212 70 212 165" fill="none" stroke="url(#tiara_gold)" stroke-width="14" stroke-linecap="round"/>
+    <path d="M28 165 Q28 78 120 63 Q212 78 212 165" fill="none" stroke="url(#tiara_silver)" stroke-width="8" stroke-linecap="round"/>
+    <path d="M120 78 Q104 62 92 74 Q80 86 120 112 Q160 86 148 74 Q136 62 120 78 Z" fill="#fff" stroke="#fff" stroke-width="9" stroke-linejoin="round"/>
+    <path d="M120 78 Q104 62 92 74 Q80 86 120 112 Q160 86 148 74 Q136 62 120 78 Z" fill="url(#tiara_heart)"/>
+    <ellipse cx="106" cy="82" rx="8" ry="5" fill="#fff" opacity="0.4"/>
+    <circle cx="52" cy="128" r="8" fill="url(#tiara_dia)" stroke="#fff" stroke-width="3"/>
+    <circle cx="86" cy="98" r="7" fill="url(#tiara_dia)" stroke="#fff" stroke-width="3"/>
+    <circle cx="154" cy="98" r="7" fill="url(#tiara_dia)" stroke="#fff" stroke-width="3"/>
+    <circle cx="188" cy="128" r="8" fill="url(#tiara_dia)" stroke="#fff" stroke-width="3"/>
+    <g fill="#fff">
+      <path d="M120 30 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4 Z"/>
+      <path d="M40 60 l2.5 6 6 2.5 -6 2.5 -2.5 6 -2.5 -6 -6 -2.5 6 -2.5 Z" opacity="0.85"/>
+      <path d="M205 70 l2.5 6 6 2.5 -6 2.5 -2.5 6 -2.5 -6 -6 -2.5 6 -2.5 Z" opacity="0.85"/>
+    </g>
+  </g>
+</svg>

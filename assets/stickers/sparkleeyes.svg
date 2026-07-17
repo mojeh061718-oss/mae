@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="sparkleeyes_iris" cx="42%" cy="34%" r="78%">
+      <stop offset="0%" stop-color="#7a5aa8"/>
+      <stop offset="45%" stop-color="#3a2160"/>
+      <stop offset="100%" stop-color="#16091f"/>
+    </radialGradient>
+    <linearGradient id="sparkleeyes_ring" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c78bff"/>
+      <stop offset="100%" stop-color="#7a4bd6"/>
+    </linearGradient>
+    <filter id="sparkleeyes_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#sparkleeyes_sh)">
+    <ellipse cx="100" cy="100" rx="78" ry="88" fill="#fff"/>
+    <ellipse cx="100" cy="100" rx="70" ry="80" fill="url(#sparkleeyes_ring)"/>
+    <ellipse cx="100" cy="102" rx="60" ry="70" fill="url(#sparkleeyes_iris)"/>
+    <!-- big top glossy highlight -->
+    <ellipse cx="78" cy="64" rx="26" ry="32" fill="#fff" opacity="0.9"/>
+    <!-- secondary lower shine -->
+    <ellipse cx="126" cy="132" rx="18" ry="22" fill="#fff" opacity="0.6"/>
+    <!-- small dot sparkle -->
+    <circle cx="128" cy="76" r="7" fill="#fff" opacity="0.85"/>
+    <!-- star glint -->
+    <path d="M84 118 l5 12 12 5 -12 5 -5 12 -5 -12 -12 -5 12 -5 Z" fill="#fff" opacity="0.95"/>
+  </g>
+</svg>

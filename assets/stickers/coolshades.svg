@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="200" viewBox="0 0 440 200">
+  <defs>
+    <linearGradient id="coolshades_lens" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4a4a58"/>
+      <stop offset="45%" stop-color="#1c1c26"/>
+      <stop offset="100%" stop-color="#050508"/>
+    </linearGradient>
+    <linearGradient id="coolshades_frame" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3a3a44"/>
+      <stop offset="100%" stop-color="#0d0d12"/>
+    </linearGradient>
+    <filter id="coolshades_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#coolshades_sh)">
+    <!-- arms -->
+    <path d="M58 74 L14 62 L11 76 L54 88 Z" fill="#fff"/>
+    <path d="M58 74 L18 64 L16 74 L54 84 Z" fill="url(#coolshades_frame)"/>
+    <path d="M382 74 L426 62 L429 76 L386 88 Z" fill="#fff"/>
+    <path d="M382 74 L422 64 L424 74 L386 84 Z" fill="url(#coolshades_frame)"/>
+    <!-- left lens -->
+    <path d="M64 74 Q66 66 76 66 L196 66 Q206 66 206 76 L206 118 Q206 132 190 134 L92 138 Q68 138 66 116 Z" fill="#fff"/>
+    <path d="M74 74 L194 74 Q198 74 198 80 L198 114 Q198 124 186 126 L94 130 Q78 130 76 112 Z" fill="url(#coolshades_lens)"/>
+    <path d="M84 78 L150 78 L110 122 L88 122 Z" fill="#fff" opacity="0.22"/>
+    <path d="M96 78 L118 78 L94 120 L84 108 Z" fill="#fff" opacity="0.3"/>
+    <!-- right lens -->
+    <path d="M376 74 Q374 66 364 66 L244 66 Q234 66 234 76 L234 118 Q234 132 250 134 L348 138 Q372 138 374 116 Z" fill="#fff"/>
+    <path d="M366 74 L246 74 Q242 74 242 80 L242 114 Q242 124 254 126 L346 130 Q362 130 364 112 Z" fill="url(#coolshades_lens)"/>
+    <path d="M256 78 L322 78 L282 122 L260 122 Z" fill="#fff" opacity="0.22"/>
+    <path d="M268 78 L290 78 L266 120 L256 108 Z" fill="#fff" opacity="0.3"/>
+    <!-- bridge -->
+    <path d="M206 76 L234 76 L234 84 L206 84 Z" fill="#fff"/>
+    <path d="M208 78 L232 78 L232 82 L208 82 Z" fill="url(#coolshades_frame)"/>
+  </g>
+</svg>

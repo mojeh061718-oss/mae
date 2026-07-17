@@ -30,11 +30,17 @@
       <video id="video" playsinline autoplay muted></video>
       <div id="cam-flash" class="flash"></div>
       <div id="cam-message" class="cam-message hidden"></div>
-      <div id="countdown" class="countdown hidden"></div>
+      <div id="countdown" class="countdown hidden">
+        <svg class="cd-ring" viewBox="0 0 100 100" aria-hidden="true">
+          <circle class="cd-track" cx="50" cy="50" r="45"></circle>
+          <circle id="cd-progress" class="cd-progress" cx="50" cy="50" r="45"></circle>
+        </svg>
+        <div id="cd-num" class="cd-num">10</div>
+      </div>
     </div>
 
     <div class="cam-controls">
-      <button id="btn-timer" class="round small" title="Timer">⏱️<span id="timer-label">Off</span></button>
+      <button id="btn-timer" class="round small" title="Self timer">⏱️<span id="timer-label">Off</span></button>
       <button id="btn-shutter" class="shutter" title="Take photo" aria-label="Take photo"></button>
       <button id="btn-flip" class="round small" title="Flip camera">🔄<span>Flip</span></button>
     </div>
@@ -49,7 +55,8 @@
         <button id="btn-redo" class="pill icon" title="Redo" disabled>↷</button>
         <span id="face-badge" class="face-badge hidden">😀 0</span>
       </div>
-      <button id="btn-save" class="pill primary">💾 Save</button>
+      <span id="autosave-badge" class="autosave-badge">💾 Auto-saved</span>
+      <button id="btn-save" class="pill primary">✓ Done</button>
     </div>
 
     <div class="ed-stage">

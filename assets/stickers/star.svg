@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <defs>
+    <filter id="star_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.28"/>
+    </filter>
+    <radialGradient id="star_g1" cx="42%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#ffe488"/>
+      <stop offset="45%" stop-color="#ffcf3f"/>
+      <stop offset="100%" stop-color="#ff7a00"/>
+    </radialGradient>
+    <radialGradient id="star_gloss" cx="45%" cy="32%" r="42%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g filter="url(#star_sh)">
+    <path d="M100 22 l23 47 52 8 -38 37 9 52 -46 -24 -46 24 9 -52 -38 -37 52 -8 z"
+          fill="url(#star_g1)" stroke="#fff" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M100 40 l15 31 20 4 -25 20 4 25 -14 -8 z" fill="url(#star_gloss)"/>
+    <g fill="#fff">
+      <path d="M150 46 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3 z" opacity="0.9"/>
+      <path d="M56 150 l2.5 7 7 2.5 -7 2.5 -2.5 7 -2.5 -7 -7 -2.5 7 -2.5 z" opacity="0.85"/>
+    </g>
+  </g>
+</svg>

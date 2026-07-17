@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="stareyes_g1" cx="40%" cy="32%" r="80%">
+      <stop offset="0%" stop-color="#fff3b0"/>
+      <stop offset="45%" stop-color="#ffd23f"/>
+      <stop offset="100%" stop-color="#ffb300"/>
+    </radialGradient>
+    <linearGradient id="stareyes_gl" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="stareyes_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#stareyes_sh)">
+    <path d="M100 16 L124 70 L182 77 L139 117 L151 176 L100 146 L49 176 L61 117 L18 77 L76 70 Z" fill="#fff"/>
+    <path d="M100 28 L121 75 L172 81 L134 116 L145 168 L100 141 L55 168 L66 116 L28 81 L79 75 Z" fill="url(#stareyes_g1)"/>
+    <path d="M100 44 L112 74 C104 72 96 72 88 74 Z" fill="url(#stareyes_gl)" opacity="0.9"/>
+    <ellipse cx="82" cy="96" rx="9" ry="14" fill="#fff" opacity="0.4"/>
+    <path d="M150 52 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4 Z" fill="#fff" opacity="0.9"/>
+    <path d="M56 132 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3 Z" fill="#fff" opacity="0.8"/>
+  </g>
+</svg>

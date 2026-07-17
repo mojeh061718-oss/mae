@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="240" viewBox="0 0 360 240">
+  <defs>
+    <linearGradient id="antlers_body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c98b4a"/>
+      <stop offset="1" stop-color="#8b5a2b"/>
+    </linearGradient>
+    <linearGradient id="antlers_gloss" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="antlers_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#antlers_sh)">
+    <g stroke="#ffffff" stroke-width="24" stroke-linejoin="round" stroke-linecap="round" fill="none">
+      <path d="M164,228 Q150,150 120,108 Q92,70 60,54"/>
+      <path d="M132,132 Q96,120 66,132"/>
+      <path d="M112,96 Q84,74 78,44"/>
+      <path d="M146,176 Q120,168 96,180"/>
+      <path d="M196,228 Q210,150 240,108 Q268,70 300,54"/>
+      <path d="M228,132 Q264,120 294,132"/>
+      <path d="M248,96 Q276,74 282,44"/>
+      <path d="M214,176 Q240,168 264,180"/>
+    </g>
+    <g stroke="url(#antlers_body)" stroke-width="14" stroke-linejoin="round" stroke-linecap="round" fill="none">
+      <path d="M164,228 Q150,150 120,108 Q92,70 60,54"/>
+      <path d="M132,132 Q96,120 66,132"/>
+      <path d="M112,96 Q84,74 78,44"/>
+      <path d="M146,176 Q120,168 96,180"/>
+      <path d="M196,228 Q210,150 240,108 Q268,70 300,54"/>
+      <path d="M228,132 Q264,120 294,132"/>
+      <path d="M248,96 Q276,74 282,44"/>
+      <path d="M214,176 Q240,168 264,180"/>
+    </g>
+    <g stroke="url(#antlers_gloss)" stroke-width="5" stroke-linecap="round" fill="none">
+      <path d="M158,210 Q146,150 118,110 Q94,78 66,60"/>
+      <path d="M202,210 Q214,150 242,110 Q266,78 294,60"/>
+    </g>
+    <circle cx="60" cy="54" r="9" fill="#c98b4a"/>
+    <circle cx="78" cy="44" r="9" fill="#c98b4a"/>
+    <circle cx="300" cy="54" r="9" fill="#c98b4a"/>
+    <circle cx="282" cy="44" r="9" fill="#c98b4a"/>
+  </g>
+</svg>

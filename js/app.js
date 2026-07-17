@@ -8,7 +8,6 @@ import { Gallery } from './gallery.js';
 const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => [...document.querySelectorAll(sel)];
 
-// ---- elements
 const video = $('#video');
 const canvas = $('#canvas');
 
@@ -16,9 +15,6 @@ const camera = new Camera(video);
 const detector = new FaceDetector();
 const editor = new Editor(canvas);
 const gallery = new Gallery();
-
-let timerMode = 0; // 0 = off, 3, 5
-const timerCycle = [0, 3, 5];
 
 // ---------------------------------------------------------------- screens
 function show(screenId) {
@@ -36,7 +32,26 @@ function toast(msg) {
   toastTimer = setTimeout(() => {
     t.classList.remove('show');
     setTimeout(() => t.classList.add('hidden'), 300);
-  }, 2200);
+  }, 1800);
+}
+
+// ---------------------------------------------------------------- sound (tiny, no assets)
+let audioCtx = null;
+function beep(freq = 880, dur = 0.08, gain = 0.06) {
+  try {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const t = audioCtx.currentTime;
+    const osc = audioCtx.createOscillator();
+    const g = audioCtx.createGain();
+    osc.type = 'sine';
+    osc.frequency.value = freq;
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(gain, t + 0.01);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    osc.connect(g).connect(audioCtx.destination);
+    osc.start(t);
+    osc.stop(t + dur + 0.02);
+  } catch (_) { /* ignore */ }
 }
 
 // ---------------------------------------------------------------- camera
@@ -68,51 +83,111 @@ $('#btn-flip').addEventListener('click', async () => {
   }
 });
 
+// ---- self timer (Off / 10s)
+let timerOn = false;
 $('#btn-timer').addEventListener('click', () => {
-  timerMode = timerCycle[(timerCycle.indexOf(timerMode) + 1) % timerCycle.length];
-  $('#timer-label').textContent = timerMode === 0 ? 'Off' : `${timerMode}s`;
+  timerOn = !timerOn;
+  $('#timer-label').textContent = timerOn ? '10s' : 'Off';
+  $('#btn-timer').classList.toggle('active', timerOn);
 });
 
 $('#btn-shutter').addEventListener('click', async () => {
-  if (timerMode > 0) {
-    await runCountdown(timerMode);
-  }
+  // Prime audio on the user gesture.
+  beep(0, 0.001, 0.0001);
+  if (timerOn) await runCountdown(10);
   await capture();
 });
 
+// Animated 10-second countdown ring visualiser.
+const CIRC = 2 * Math.PI * 45;
 function runCountdown(seconds) {
   return new Promise((resolve) => {
-    const el = $('#countdown');
-    el.classList.remove('hidden');
-    let n = seconds;
-    el.textContent = n;
-    const tick = setInterval(() => {
-      n -= 1;
-      if (n <= 0) {
-        clearInterval(tick);
-        el.classList.add('hidden');
-        resolve();
-      } else {
-        el.textContent = n;
+    const wrap = $('#countdown');
+    const ring = $('#cd-progress');
+    const num = $('#cd-num');
+    ring.style.strokeDasharray = `${CIRC}`;
+    ring.style.strokeDashoffset = '0';
+    wrap.classList.remove('hidden');
+
+    const total = seconds * 1000;
+    let start = null;
+    let lastShown = -1;
+
+    const frame = (ts) => {
+      if (start === null) start = ts;
+      const elapsed = Math.min(total, ts - start);
+      const p = elapsed / total;
+      ring.style.strokeDashoffset = `${CIRC * p}`;
+      // color shifts green -> yellow -> red as time runs out
+      const hue = 130 * (1 - p);
+      ring.style.stroke = `hsl(${hue}, 90%, 55%)`;
+
+      const remaining = Math.ceil((total - elapsed) / 1000);
+      if (remaining !== lastShown && remaining > 0) {
+        lastShown = remaining;
+        num.textContent = remaining;
+        num.classList.remove('pop');
+        void num.offsetWidth;
+        num.classList.add('pop');
+        beep(remaining <= 3 ? 1200 : 760, 0.09);
       }
-    }, 1000);
+
+      if (elapsed < total) {
+        requestAnimationFrame(frame);
+      } else {
+        num.textContent = '📸';
+        beep(1600, 0.18, 0.08);
+        setTimeout(() => { wrap.classList.add('hidden'); resolve(); }, 250);
+      }
+    };
+    requestAnimationFrame(frame);
   });
 }
 
 async function capture() {
-  if (!video.videoWidth) {
-    toast('Camera is still waking up…');
-    return;
-  }
-  // flash
+  if (!video.videoWidth) { toast('Camera is still waking up…'); return; }
   const flash = $('#cam-flash');
   flash.classList.remove('go');
   void flash.offsetWidth;
   flash.classList.add('go');
+  beep(1600, 0.12, 0.05);
 
   editor.setPhoto(video, camera.isFrontFacing());
   openEditor();
+  await startNewGalleryEntry(); // auto-save the fresh photo immediately
   detectFaces();
+}
+
+// ---------------------------------------------------------------- autosave
+let currentPhotoId = null;
+let autosaveTimer = null;
+
+async function startNewGalleryEntry() {
+  const blob = await editor.toBlob('image/png');
+  if (!blob) return;
+  currentPhotoId = await gallery.save(blob);
+  await updateGalleryCount();
+}
+
+function scheduleAutosave() {
+  clearTimeout(autosaveTimer);
+  autosaveTimer = setTimeout(doAutosave, 650);
+}
+async function doAutosave() {
+  if (!currentPhotoId) return;
+  const blob = await editor.toBlob('image/png');
+  if (!blob) return;
+  await gallery.update(currentPhotoId, blob);
+  await updateGalleryCount();
+  flashAutosaved();
+}
+editor.onChange = scheduleAutosave;
+
+function flashAutosaved() {
+  const b = $('#autosave-badge');
+  b.classList.add('show');
+  clearTimeout(flashAutosaved._t);
+  flashAutosaved._t = setTimeout(() => b.classList.remove('show'), 1200);
 }
 
 // ---------------------------------------------------------------- editor open
@@ -120,26 +195,17 @@ function openEditor() {
   show('screen-editor');
   refreshHistoryButtons();
   $('#sel-toolbar').classList.add('hidden');
-  const badge = $('#face-badge');
-  badge.textContent = '🔍…';
-  badge.classList.remove('hidden');
-  // reset tabs to stickers
   selectTab('stickers');
 }
 
+// Silent: never announces when no face is found (she may shoot other things).
 async function detectFaces() {
-  const badge = $('#face-badge');
   const faces = await detector.detect(editor.base, editor.width, editor.height);
   editor.setFaces(faces);
-  if (detector.error && !faces.length) {
-    badge.textContent = '😀 tap to place';
-  } else {
-    badge.textContent = `😀 ${faces.length}`;
-  }
-  if (faces.length) toast(`Found ${faces.length} ${faces.length === 1 ? 'face' : 'faces'}! 🎉`);
 }
 
-$('#btn-retake').addEventListener('click', () => {
+$('#btn-retake').addEventListener('click', async () => {
+  await doAutosave();
   show('screen-camera');
 });
 
@@ -147,6 +213,7 @@ $('#btn-retake').addEventListener('click', () => {
 function selectTab(name) {
   $$('.tab').forEach((t) => t.classList.toggle('active', t.dataset.tab === name));
   $$('.tray-panel').forEach((p) => p.classList.toggle('active', p.dataset.panel === name));
+  editor.setTool(name === 'draw' ? 'draw' : 'sticker');
 }
 $$('.tab').forEach((t) => t.addEventListener('click', () => selectTab(t.dataset.tab)));
 
@@ -159,7 +226,7 @@ function buildStickerCats() {
   CATEGORIES.forEach((cat) => {
     const b = document.createElement('button');
     b.className = 'chip' + (cat.id === activeCat ? ' active' : '');
-    b.textContent = `${cat.icon} ${cat.name}`;
+    b.innerHTML = `<img src="${cat.thumb}" alt=""><span>${cat.name}</span>`;
     b.addEventListener('click', () => {
       activeCat = cat.id;
       buildStickerCats();
@@ -175,7 +242,7 @@ function buildStickerGrid() {
   stickersByCategory(activeCat).forEach((s) => {
     const b = document.createElement('button');
     b.className = 'sticker-btn';
-    b.innerHTML = `${s.icon}<span class="lbl">${s.name}</span>`;
+    b.innerHTML = `<img src="${s.asset}" alt="${s.name}" loading="lazy"><span class="lbl">${s.name}</span>`;
     b.addEventListener('click', () => placeSticker(s));
     grid.appendChild(b);
   });
@@ -183,16 +250,10 @@ function buildStickerGrid() {
 
 function placeSticker(sticker) {
   if (sticker.faceTracked) {
-    const n = editor.addFaceSticker(sticker);
-    if (n > 0) {
-      toast(`${sticker.icon} on ${editor.faceCount()} ${editor.faceCount() === 1 ? 'face' : 'faces'}!`);
-    } else {
-      editor.addFreeSticker(sticker);
-      toast('No face yet — drag me where you like! ✋');
-    }
+    const n = editor.addFaceSticker(sticker); // swaps same-zone sticker automatically
+    if (n === 0) editor.addFreeSticker(sticker); // no face: drop it, she can drag it
   } else {
     editor.addFreeSticker(sticker);
-    toast(`${sticker.icon} added — drag to move!`);
   }
   refreshHistoryButtons();
 }
@@ -210,10 +271,7 @@ function buildFilters() {
     sw.style.filter = f.css && f.css !== 'none' ? f.css : 'none';
     b.appendChild(sw);
     b.appendChild(document.createTextNode(f.name));
-    b.addEventListener('click', () => {
-      editor.setFilter(f.id);
-      buildFilters();
-    });
+    b.addEventListener('click', () => { editor.setFilter(f.id); buildFilters(); });
     grid.appendChild(b);
   });
 }
@@ -230,7 +288,6 @@ function buildBrushes() {
       editor.setTool('draw');
       editor.setBrush(br.id);
       buildBrushes();
-      toast(`${br.icon} ${br.name} ready — draw on the photo!`);
     });
     row.appendChild(b);
   });
@@ -252,60 +309,36 @@ function buildColors() {
   });
 }
 
-$('#brush-size').addEventListener('input', (e) => {
-  editor.setBrushSize(Number(e.target.value));
-});
-
+$('#brush-size').addEventListener('input', (e) => editor.setBrushSize(Number(e.target.value)));
 $('#btn-clear-draw').addEventListener('click', () => {
-  editor._pushHistory();
-  editor.paintCtx.clearRect(0, 0, editor.width, editor.height);
-  editor.render();
+  editor.clearDrawing();
   refreshHistoryButtons();
   toast('Drawing cleared 🧼');
 });
 
-// When the user picks the Draw tab, switch editor into draw mode.
-$('[data-tab="draw"]').addEventListener('click', () => editor.setTool('draw'));
-$('[data-tab="stickers"]').addEventListener('click', () => editor.setTool('sticker'));
-
 // ---------------------------------------------------------------- magic
 $('#btn-surprise').addEventListener('click', () => {
-  if (!editor.faceCount()) {
-    toast('Take a photo with a face first! 😀');
-    return;
-  }
+  if (!editor.faceCount()) { toast('Point at a face first! 😀'); return; }
   const pool = STICKERS.filter((s) => s.faceTracked);
-  const picks = new Set();
-  // deterministic-ish spread using current placed count as a seed
-  let seed = editor.placed.length + 1;
-  const rand = () => {
-    seed = (seed * 9301 + 49297) % 233280;
-    return seed / 233280;
-  };
-  const groups = ['hats', 'eyes', 'face', 'cheeks'];
-  groups.forEach((g) => {
+  let seed = editor.placed.length + 3;
+  const rand = () => { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
+  ['hats', 'eyes', 'face', 'cheeks'].forEach((g) => {
     const opts = pool.filter((s) => s.category === g);
-    if (opts.length) picks.add(opts[Math.floor(rand() * opts.length)]);
+    if (opts.length) editor.addFaceSticker(opts[Math.floor(rand() * opts.length)]);
   });
-  picks.forEach((s) => editor.addFaceSticker(s));
   refreshHistoryButtons();
   toast('✨ Ta-da! ✨');
 });
 
 $('#btn-clear-stickers').addEventListener('click', () => {
-  editor._pushHistory();
-  editor.placed = [];
-  editor.selected = null;
-  editor.render();
+  editor.clearStickers();
   $('#sel-toolbar').classList.add('hidden');
   refreshHistoryButtons();
   toast('Stickers cleared 🧹');
 });
 
 // ---------------------------------------------------------------- selection toolbar
-editor.onSelectionChange = (sel) => {
-  $('#sel-toolbar').classList.toggle('hidden', !sel);
-};
+editor.onSelectionChange = (sel) => $('#sel-toolbar').classList.toggle('hidden', !sel);
 
 $('#sel-toolbar').addEventListener('click', (e) => {
   const act = e.target.closest('button')?.dataset.act;
@@ -326,13 +359,11 @@ function refreshHistoryButtons() {
 $('#btn-undo').addEventListener('click', () => { editor.undo(); refreshHistoryButtons(); });
 $('#btn-redo').addEventListener('click', () => { editor.redo(); refreshHistoryButtons(); });
 
-// ---------------------------------------------------------------- save + gallery
+// ---------------------------------------------------------------- done + gallery
 $('#btn-save').addEventListener('click', async () => {
-  const blob = await editor.toBlob('image/png');
-  if (!blob) { toast('Hmm, could not save 😢'); return; }
-  await gallery.save(blob);
-  await updateGalleryCount();
+  await doAutosave();
   toast('Saved to My Photos! 🎉');
+  show('screen-camera');
 });
 
 async function updateGalleryCount() {
@@ -410,21 +441,18 @@ function isStandalone() {
   return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
 }
 function showIosHintIfNeeded(force = false) {
-  if ((force || (isIos() && !isStandalone())) ) {
-    $('#ios-hint').classList.remove('hidden');
-  }
+  if (force || (isIos() && !isStandalone())) $('#ios-hint').classList.remove('hidden');
 }
 $('#ios-hint-close').addEventListener('click', () => $('#ios-hint').classList.add('hidden'));
 
 // ---------------------------------------------------------------- service worker
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js').catch(() => {});
-  });
+  window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
 }
 
 // ---------------------------------------------------------------- boot
 function boot() {
+  editor.preloadAssets(STICKERS.map((s) => s.asset));
   buildStickerCats();
   buildStickerGrid();
   buildFilters();
@@ -432,13 +460,10 @@ function boot() {
   buildColors();
   updateGalleryCount();
   startCamera();
-  detector.warmUp(); // preload face model in the background
-  // one-time gentle iOS hint after a short delay
-  if (isIos() && !isStandalone()) {
-    setTimeout(() => showIosHintIfNeeded(), 4000);
-  }
+  detector.warmUp();
+  if (isIos() && !isStandalone()) setTimeout(() => showIosHintIfNeeded(), 4000);
 }
 boot();
 
 // Exposed for automated end-to-end verification. Harmless in production.
-window.__mae = { editor, gallery, detector, camera, capture, placeSticker, show };
+window.__mae = { editor, gallery, detector, camera, capture, placeSticker, show, runCountdown };

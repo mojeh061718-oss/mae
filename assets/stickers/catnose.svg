@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="160" viewBox="0 0 300 160">
+  <defs>
+    <linearGradient id="catnose_body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff9ec4"/>
+      <stop offset="1" stop-color="#ff5c8f"/>
+    </linearGradient>
+    <linearGradient id="catnose_gloss" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="catnose_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#catnose_sh)">
+    <g stroke="#ffffff" stroke-width="9" stroke-linecap="round" fill="none">
+      <path d="M96,58 Q54,44 20,32"/>
+      <path d="M96,72 Q52,70 16,74"/>
+      <path d="M98,86 Q56,96 24,112"/>
+      <path d="M204,58 Q246,44 280,32"/>
+      <path d="M204,72 Q248,70 284,74"/>
+      <path d="M202,86 Q244,96 276,112"/>
+    </g>
+    <path d="M126,54 Q150,50 174,54 Q168,78 150,92 Q132,78 126,54 Z" fill="none" stroke="#ffffff" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M126,54 Q150,50 174,54 Q168,78 150,92 Q132,78 126,54 Z" fill="url(#catnose_body)"/>
+    <path d="M150,92 L150,108 M150,108 Q134,124 120,116 M150,108 Q166,124 180,116" stroke="#c94070" stroke-width="6" stroke-linecap="round" fill="none"/>
+    <path d="M134,58 Q150,54 166,58 Q158,68 150,72 Q142,68 134,58 Z" fill="url(#catnose_gloss)"/>
+    <g stroke="#ffb6c1" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.8">
+      <path d="M96,58 Q54,44 20,32"/>
+      <path d="M204,58 Q246,44 280,32"/>
+    </g>
+  </g>
+</svg>

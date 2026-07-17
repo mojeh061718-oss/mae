@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="160" viewBox="0 0 200 160">
+  <defs>
+    <radialGradient id="pignose_body" cx="0.42" cy="0.32" r="0.85">
+      <stop offset="0" stop-color="#ffc2d6"/>
+      <stop offset="0.55" stop-color="#ff8fb4"/>
+      <stop offset="1" stop-color="#ff5c8f"/>
+    </radialGradient>
+    <radialGradient id="pignose_nostril" cx="0.5" cy="0.4" r="0.7">
+      <stop offset="0" stop-color="#b8446a"/>
+      <stop offset="1" stop-color="#7a2743"/>
+    </radialGradient>
+    <linearGradient id="pignose_gloss" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.65"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="pignose_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#pignose_sh)">
+    <ellipse cx="100" cy="80" rx="82" ry="62" fill="none" stroke="#ffffff" stroke-width="10"/>
+    <ellipse cx="100" cy="80" rx="82" ry="62" fill="url(#pignose_body)"/>
+    <ellipse cx="72" cy="80" rx="15" ry="26" fill="url(#pignose_nostril)"/>
+    <ellipse cx="128" cy="80" rx="15" ry="26" fill="url(#pignose_nostril)"/>
+    <ellipse cx="70" cy="70" rx="6" ry="9" fill="#ffffff" opacity="0.25"/>
+    <ellipse cx="126" cy="70" rx="6" ry="9" fill="#ffffff" opacity="0.25"/>
+    <ellipse cx="76" cy="44" rx="46" ry="22" fill="url(#pignose_gloss)"/>
+    <ellipse cx="62" cy="36" rx="16" ry="8" fill="#ffffff" opacity="0.55"/>
+  </g>
+</svg>

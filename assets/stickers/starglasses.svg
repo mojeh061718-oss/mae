@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="200" viewBox="0 0 440 200">
+  <defs>
+    <linearGradient id="starglasses_gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffe17a"/>
+      <stop offset="50%" stop-color="#ffcf3f"/>
+      <stop offset="100%" stop-color="#ffb300"/>
+    </linearGradient>
+    <linearGradient id="starglasses_lens" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff5cc8"/>
+      <stop offset="50%" stop-color="#a05cff"/>
+      <stop offset="100%" stop-color="#3fa9ff"/>
+    </linearGradient>
+    <filter id="starglasses_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#starglasses_sh)">
+    <!-- arms -->
+    <path d="M56 78 L14 64 L10 80 L54 94 Z" fill="#fff"/>
+    <path d="M384 78 L426 64 L430 80 L386 94 Z" fill="#fff"/>
+    <!-- bridge -->
+    <path d="M196 84 Q220 74 244 84 L244 98 Q220 88 196 98 Z" fill="#fff"/>
+    <path d="M201 87 Q220 79 239 87 L239 94 Q220 86 201 94 Z" fill="url(#starglasses_gold)"/>
+    <!-- left star -->
+    <path d="M132 30 L152 82 L208 86 L165 120 L178 176 L132 145 L86 176 L99 120 L56 86 L112 82 Z" fill="#fff"/>
+    <path d="M132 44 L148 86 L192 89 L158 116 L169 158 L132 134 L95 158 L106 116 L72 89 L116 86 Z" fill="url(#starglasses_gold)"/>
+    <path d="M132 62 L142 90 L170 92 L148 110 L156 138 L132 122 L108 138 L116 110 L94 92 L122 90 Z" fill="url(#starglasses_lens)"/>
+    <path d="M120 82 L138 100 L128 106 L114 92 Z" fill="#fff" opacity="0.4"/>
+    <!-- right star -->
+    <path d="M308 30 L328 82 L384 86 L341 120 L354 176 L308 145 L262 176 L275 120 L232 86 L288 82 Z" fill="#fff"/>
+    <path d="M308 44 L324 86 L368 89 L334 116 L345 158 L308 134 L271 158 L282 116 L248 89 L292 86 Z" fill="url(#starglasses_gold)"/>
+    <path d="M308 62 L318 90 L346 92 L324 110 L332 138 L308 122 L284 138 L292 110 L270 92 L298 90 Z" fill="url(#starglasses_lens)"/>
+    <path d="M296 82 L314 100 L304 106 L290 92 Z" fill="#fff" opacity="0.4"/>
+  </g>
+</svg>

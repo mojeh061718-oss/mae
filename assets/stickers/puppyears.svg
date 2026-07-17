@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="220" viewBox="0 0 360 220">
+  <defs>
+    <linearGradient id="puppyears_body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a9713c"/>
+      <stop offset="1" stop-color="#5a3d2b"/>
+    </linearGradient>
+    <linearGradient id="puppyears_inner" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d9a869"/>
+      <stop offset="1" stop-color="#c98b4a"/>
+    </linearGradient>
+    <linearGradient id="puppyears_gloss" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="puppyears_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#puppyears_sh)">
+    <path d="M150,44 Q70,30 40,90 Q18,140 44,178 Q78,210 120,192 Q152,176 156,120 Q158,74 150,44 Z" fill="none" stroke="#ffffff" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M210,44 Q290,30 320,90 Q342,140 316,178 Q282,210 240,192 Q208,176 204,120 Q202,74 210,44 Z" fill="none" stroke="#ffffff" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M150,44 Q70,30 40,90 Q18,140 44,178 Q78,210 120,192 Q152,176 156,120 Q158,74 150,44 Z" fill="url(#puppyears_body)"/>
+    <path d="M210,44 Q290,30 320,90 Q342,140 316,178 Q282,210 240,192 Q208,176 204,120 Q202,74 210,44 Z" fill="url(#puppyears_body)"/>
+    <path d="M144,66 Q90,60 68,102 Q54,138 74,166 Q100,186 128,172 Q146,158 148,118 Q148,86 144,66 Z" fill="url(#puppyears_inner)"/>
+    <path d="M216,66 Q270,60 292,102 Q306,138 286,166 Q260,186 232,172 Q214,158 212,118 Q212,86 216,66 Z" fill="url(#puppyears_inner)"/>
+    <path d="M138,58 Q84,52 58,96 Q48,120 62,138 Q70,104 96,82 Q118,66 138,58 Z" fill="url(#puppyears_gloss)"/>
+    <path d="M222,58 Q276,52 302,96 Q312,120 298,138 Q290,104 264,82 Q242,66 222,58 Z" fill="url(#puppyears_gloss)"/>
+  </g>
+</svg>

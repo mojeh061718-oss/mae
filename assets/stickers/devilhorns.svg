@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="180" viewBox="0 0 260 180">
+  <defs>
+    <linearGradient id="devilhorns_red" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff7a7a"/>
+      <stop offset="0.5" stop-color="#ff3b3b"/>
+      <stop offset="1" stop-color="#a30000"/>
+    </linearGradient>
+    <filter id="devilhorns_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+  <g filter="url(#devilhorns_sh)">
+    <g stroke="#fff" stroke-width="11" stroke-linejoin="round">
+      <path d="M118 158 Q92 150 74 116 Q56 78 22 40 Q78 44 104 84 Q124 116 130 150 Z" fill="url(#devilhorns_red)"/>
+      <path d="M142 158 Q168 150 186 116 Q204 78 238 40 Q182 44 156 84 Q136 116 130 150 Z" fill="url(#devilhorns_red)"/>
+    </g>
+    <path d="M60 66 Q78 78 96 108 Q84 92 62 82 Q52 74 60 66 Z" fill="#fff" opacity="0.34"/>
+    <path d="M200 66 Q182 78 164 108 Q176 92 198 82 Q208 74 200 66 Z" fill="#fff" opacity="0.34"/>
+    <ellipse cx="115" cy="145" rx="8" ry="5" fill="#fff" opacity="0.3"/>
+    <ellipse cx="145" cy="145" rx="8" ry="5" fill="#fff" opacity="0.3"/>
+  </g>
+</svg>

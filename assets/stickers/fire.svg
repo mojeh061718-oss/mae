@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="220" viewBox="0 0 180 220">
+  <defs>
+    <filter id="fire_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.28"/>
+    </filter>
+    <linearGradient id="fire_g1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ff9d1f"/>
+      <stop offset="45%" stop-color="#ff3b3b"/>
+      <stop offset="100%" stop-color="#c81f1f"/>
+    </linearGradient>
+    <linearGradient id="fire_g2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff3a0"/>
+      <stop offset="45%" stop-color="#ffd23f"/>
+      <stop offset="100%" stop-color="#ff7a00"/>
+    </linearGradient>
+    <radialGradient id="fire_gloss" cx="45%" cy="30%" r="55%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g filter="url(#fire_sh)">
+    <path d="M90 16 C104 52 128 62 138 98 C150 138 128 200 90 200 C52 200 30 148 42 108 C50 82 62 84 66 100 C72 74 60 58 78 40 C86 60 96 58 96 44 C96 34 92 26 90 16 z"
+          fill="url(#fire_g1)" stroke="#fff" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M92 78 C104 100 116 112 116 138 C116 168 104 186 88 186 C70 186 60 166 64 144 C68 126 78 128 82 140 C86 122 82 104 92 78 z"
+          fill="url(#fire_g2)"/>
+    <path d="M90 96 C98 112 104 122 104 140 C104 160 96 172 86 172 C88 150 82 132 90 96 z" fill="url(#fire_gloss)"/>
+    <ellipse cx="72" cy="72" rx="8" ry="16" fill="#ffffff" opacity="0.4" transform="rotate(-18 72 72)"/>
+  </g>
+</svg>

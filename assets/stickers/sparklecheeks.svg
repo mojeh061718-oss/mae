@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <defs>
+    <filter id="sparklecheeks_sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.28"/>
+    </filter>
+    <radialGradient id="sparklecheeks_pink" cx="42%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#ff8fb0"/>
+      <stop offset="60%" stop-color="#ff2d6f"/>
+      <stop offset="100%" stop-color="#ff2d6f"/>
+    </radialGradient>
+    <radialGradient id="sparklecheeks_gold" cx="42%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#ffe07a"/>
+      <stop offset="60%" stop-color="#ffcf3f"/>
+      <stop offset="100%" stop-color="#ff9d1f"/>
+    </radialGradient>
+    <radialGradient id="sparklecheeks_blue" cx="42%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#9fd4ff"/>
+      <stop offset="60%" stop-color="#3fa9ff"/>
+      <stop offset="100%" stop-color="#2a7fd6"/>
+    </radialGradient>
+  </defs>
+  <g filter="url(#sparklecheeks_sh)">
+    <g stroke="#fff" stroke-width="10" stroke-linejoin="round">
+      <path d="M78 30 C84 62 88 66 120 72 C88 78 84 82 78 114 C72 82 68 78 36 72 C68 66 72 62 78 30 z" fill="url(#sparklecheeks_pink)"/>
+      <path d="M138 92 C142 116 145 119 169 123 C145 127 142 130 138 154 C134 130 131 127 107 123 C131 119 134 116 138 92 z" fill="url(#sparklecheeks_gold)"/>
+      <path d="M55 118 C58 138 60 140 80 143 C60 146 58 148 55 168 C52 148 50 146 30 143 C50 140 52 138 55 118 z" fill="url(#sparklecheeks_blue)"/>
+    </g>
+    <g fill="#ffffff">
+      <circle cx="70" cy="60" r="4.5" opacity="0.85"/>
+      <circle cx="131" cy="112" r="3.5" opacity="0.85"/>
+      <circle cx="49" cy="132" r="3" opacity="0.85"/>
+      <path d="M150 40 l2.5 7 7 2.5 -7 2.5 -2.5 7 -2.5 -7 -7 -2.5 7 -2.5 z" opacity="0.9"/>
+    </g>
+  </g>
+</svg>
