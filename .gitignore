@@ -7,3 +7,5 @@ scripts/preview-face.png
 scripts/preview.log
 .DS_Store
 *.log
+scripts/ui-*.png
+scripts/shot-ui-*.png
