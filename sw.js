@@ -2,7 +2,7 @@
 // Precaches the app shell and runtime-caches the MediaPipe model/wasm so face
 // detection keeps working offline after the first successful load.
 
-const VERSION = 'v1.0.0';
+const VERSION = 'v1.1.0';
 const SHELL_CACHE = `mae-shell-${VERSION}`;
 const CDN_CACHE = `mae-cdn-${VERSION}`;
 
@@ -76,19 +76,39 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Same-origin app shell: cache-first with background refresh.
   if (url.origin === self.location.origin) {
-    event.respondWith(
-      caches.open(SHELL_CACHE).then(async (cache) => {
-        const hit = await cache.match(req);
-        const network = fetch(req)
-          .then((res) => {
+    const dest = req.destination;
+    const isShell =
+      req.mode === 'navigate' ||
+      dest === 'document' || dest === 'script' || dest === 'style' ||
+      url.pathname.endsWith('.webmanifest');
+
+    if (isShell) {
+      // Code + markup: NETWORK-FIRST so new deploys appear immediately when
+      // online; fall back to cache (and index.html) when offline.
+      event.respondWith(
+        caches.open(SHELL_CACHE).then(async (cache) => {
+          try {
+            const res = await fetch(req);
             if (res && res.ok) cache.put(req, res.clone());
             return res;
-          })
-          .catch(() => hit);
-        return hit || network;
-      })
-    );
+          } catch (err) {
+            const hit = await cache.match(req);
+            return hit || (await cache.match('./index.html')) || Response.error();
+          }
+        })
+      );
+    } else {
+      // Images / SVG stickers / icons: cache-first with background refresh.
+      event.respondWith(
+        caches.open(SHELL_CACHE).then(async (cache) => {
+          const hit = await cache.match(req);
+          const network = fetch(req)
+            .then((res) => { if (res && res.ok) cache.put(req, res.clone()); return res; })
+            .catch(() => hit);
+          return hit || network;
+        })
+      );
+    }
   }
 });

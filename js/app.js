@@ -449,7 +449,21 @@ $('#ios-hint-close').addEventListener('click', () => $('#ios-hint').classList.ad
 
 // ---------------------------------------------------------------- service worker
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+  // When a new version activates and takes control, reload once to show it.
+  // (Only when a controller already existed — i.e. a real update, not first install.)
+  if (navigator.serviceWorker.controller) {
+    let refreshing = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (refreshing) return;
+      refreshing = true;
+      window.location.reload();
+    });
+  }
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js')
+      .then((reg) => reg.update())
+      .catch(() => {});
+  });
 }
 
 // ---------------------------------------------------------------- boot
