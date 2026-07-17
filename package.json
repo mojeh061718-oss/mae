@@ -1,0 +1,12 @@
+{
+  "name": "mae-camera-studio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A magical PWA camera studio for kids with face-tracking stickers, drawing, and filters.",
+  "scripts": {
+    "test": "node --test 'tests/**/*.test.js'",
+    "icons": "node scripts/gen-icons.mjs",
+    "serve": "node scripts/serve.mjs"
+  }
+}

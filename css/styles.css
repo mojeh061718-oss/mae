@@ -1,0 +1,330 @@
+/* Mae's Camera Studio — kid-friendly, iPad-first styles */
+:root {
+  --pink: #ff5cc8;
+  --hot: #ff2d6f;
+  --purple: #a05cff;
+  --blue: #3fa9ff;
+  --yellow: #ffd23f;
+  --green: #4cd964;
+  --ink: #2a1a3a;
+  --bg1: #ffe3f6;
+  --bg2: #e3f0ff;
+  --panel: rgba(255, 255, 255, 0.92);
+  --shadow: 0 8px 24px rgba(120, 40, 120, 0.18);
+  --radius: 22px;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: "Baloo 2", "Comic Sans MS", "Chalkboard SE", "Segoe UI", system-ui, sans-serif;
+  color: var(--ink);
+  background: linear-gradient(135deg, var(--bg1), var(--bg2));
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+button { font-family: inherit; cursor: pointer; border: none; }
+.hidden { display: none !important; }
+
+/* screens */
+.screen {
+  position: fixed;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+.screen.active { display: flex; }
+
+/* ============================= shared bits ============================= */
+.brand {
+  font-size: clamp(20px, 3.5vw, 30px);
+  font-weight: 800;
+  color: var(--hot);
+  text-shadow: 0 2px 0 #fff;
+}
+.pill {
+  background: var(--panel);
+  color: var(--ink);
+  font-weight: 700;
+  font-size: clamp(15px, 2.2vw, 20px);
+  padding: 10px 16px;
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+  min-height: 48px;
+  transition: transform .08s ease;
+}
+.pill:active { transform: scale(0.92); }
+.pill.primary { background: linear-gradient(180deg, var(--green), #33bb52); color: #fff; }
+.pill.icon { font-size: 26px; padding: 6px 16px; }
+.pill[disabled] { opacity: 0.4; }
+
+/* ============================= camera screen ============================= */
+.cam-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  gap: 10px;
+}
+.top-actions { display: flex; gap: 10px; }
+
+.cam-stage {
+  position: relative;
+  flex: 1;
+  margin: 0 12px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #000;
+  box-shadow: var(--shadow), inset 0 0 0 6px #fff;
+}
+#video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* mirror the front-camera preview like a real mirror */
+#video.mirror { transform: scaleX(-1); }
+
+.flash {
+  position: absolute; inset: 0;
+  background: #fff; opacity: 0; pointer-events: none;
+}
+.flash.go { animation: flash .4s ease; }
+@keyframes flash { 0% { opacity: 0; } 20% { opacity: .9; } 100% { opacity: 0; } }
+
+.cam-message {
+  position: absolute;
+  left: 50%; bottom: 18px; transform: translateX(-50%);
+  background: rgba(0,0,0,0.6); color: #fff;
+  padding: 10px 18px; border-radius: 999px;
+  font-size: clamp(14px, 2.4vw, 20px); font-weight: 700;
+  max-width: 90%; text-align: center;
+}
+.countdown {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28vh; font-weight: 900; color: #fff;
+  text-shadow: 0 6px 24px rgba(0,0,0,.5);
+}
+
+.cam-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 18px 24px calc(18px + env(safe-area-inset-bottom));
+  gap: 16px;
+}
+.round.small {
+  background: var(--panel);
+  border-radius: 26px;
+  width: 84px; height: 84px;
+  font-size: 30px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  box-shadow: var(--shadow);
+  font-weight: 700;
+}
+.round.small span { font-size: 13px; margin-top: 2px; }
+.round.small:active { transform: scale(0.9); }
+
+.shutter {
+  width: 108px; height: 108px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 40%, #fff 0 58%, var(--hot) 60% 100%);
+  box-shadow: 0 0 0 8px rgba(255,255,255,.6), var(--shadow);
+  transition: transform .08s ease;
+}
+.shutter:active { transform: scale(0.9); }
+
+/* ============================= editor screen ============================= */
+.ed-topbar, .gallery .ed-topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px; gap: 8px;
+}
+.ed-mid { display: flex; align-items: center; gap: 8px; }
+.face-badge {
+  background: var(--yellow); color: var(--ink);
+  padding: 6px 12px; border-radius: 999px; font-weight: 800;
+  box-shadow: var(--shadow);
+}
+
+.ed-stage {
+  position: relative;
+  flex: 1;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 8px; min-height: 0;
+}
+#canvas {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 16px;
+  box-shadow: var(--shadow), inset 0 0 0 5px #fff;
+  background: #fff;
+  touch-action: none;
+}
+
+.sel-toolbar {
+  position: absolute;
+  bottom: 10px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 8px;
+  background: var(--panel);
+  padding: 8px; border-radius: 999px;
+  box-shadow: var(--shadow);
+}
+.sel-toolbar button {
+  width: 56px; height: 56px; border-radius: 50%;
+  font-size: 24px; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,.15);
+}
+.sel-toolbar button:active { transform: scale(0.9); }
+.sel-toolbar .danger { background: #ffdede; }
+
+.ed-tabs {
+  display: flex; gap: 6px; padding: 6px 10px 0;
+  overflow-x: auto;
+}
+.tab {
+  flex: 1;
+  background: rgba(255,255,255,0.55);
+  border-radius: 16px 16px 0 0;
+  padding: 12px 6px;
+  font-weight: 800;
+  font-size: clamp(14px, 2.1vw, 19px);
+  color: var(--ink);
+  white-space: nowrap;
+}
+.tab.active { background: var(--panel); box-shadow: 0 -4px 12px rgba(120,40,120,.12); }
+
+.ed-tray {
+  background: var(--panel);
+  padding: 12px;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  min-height: 168px;
+  max-height: 34vh;
+  overflow-y: auto;
+  box-shadow: 0 -6px 20px rgba(120,40,120,.12);
+}
+.tray-panel { display: none; }
+.tray-panel.active { display: block; }
+
+.chip-row {
+  display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px;
+}
+.chip {
+  flex: 0 0 auto;
+  background: #fff; border-radius: 999px;
+  padding: 8px 16px; font-weight: 800; font-size: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.1);
+}
+.chip.active { background: var(--purple); color: #fff; }
+
+.sticker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(66px, 1fr));
+  gap: 8px;
+}
+.sticker-btn {
+  aspect-ratio: 1;
+  background: #fff;
+  border-radius: 18px;
+  font-size: 34px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,.1);
+  position: relative;
+  transition: transform .08s ease;
+}
+.sticker-btn:active { transform: scale(0.86); }
+.sticker-btn .lbl {
+  position: absolute; bottom: 3px; left: 0; right: 0;
+  font-size: 9px; font-weight: 700; color: #7a6; text-align: center;
+  opacity: .7;
+}
+
+.color-row { display: flex; gap: 10px; flex-wrap: wrap; padding: 8px 0; }
+.swatch {
+  width: 44px; height: 44px; border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,.2); border: 3px solid #fff;
+}
+.swatch.active { outline: 4px solid var(--purple); outline-offset: 1px; }
+
+.size-row { display: flex; align-items: center; gap: 12px; padding-top: 8px; flex-wrap: wrap; }
+.size-row span { font-weight: 800; }
+#brush-size { flex: 1; min-width: 120px; height: 30px; }
+
+.filter-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px;
+}
+.filter-btn {
+  background: #fff; border-radius: 14px; padding: 12px 6px;
+  font-weight: 800; font-size: 14px; box-shadow: 0 2px 6px rgba(0,0,0,.1);
+}
+.filter-btn.active { background: var(--blue); color: #fff; }
+.filter-btn .sw { font-size: 22px; display:block; }
+
+.magic-row { display: flex; gap: 12px; flex-wrap: wrap; }
+.big-btn {
+  flex: 1; min-width: 150px;
+  background: linear-gradient(180deg, var(--yellow), #ffb703);
+  border-radius: 18px; padding: 20px; font-size: 22px; font-weight: 900;
+  box-shadow: var(--shadow);
+}
+.big-btn.alt { background: linear-gradient(180deg, #ffd0f0, var(--pink)); color:#fff; }
+.big-btn:active { transform: scale(0.95); }
+.hint { text-align: center; font-weight: 700; color: #9a5; margin-top: 12px; }
+
+/* ============================= gallery ============================= */
+.gallery-grid {
+  flex: 1; overflow-y: auto;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px; padding: 12px;
+}
+.gallery-card {
+  background: #fff; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow);
+  display: flex; flex-direction: column;
+}
+.gallery-card img { width: 100%; aspect-ratio: 3/4; object-fit: cover; }
+.gallery-card .row { display: flex; }
+.gallery-card .row button { flex: 1; padding: 12px; font-size: 20px; background: #fff; }
+.gallery-card .row button.del { background: #ffe3e3; }
+.gallery-empty {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  font-size: 22px; font-weight: 800; color: #b48; text-align: center; padding: 20px;
+}
+
+/* ============================= toast ============================= */
+.toast {
+  position: fixed; left: 50%; bottom: 12vh; transform: translateX(-50%) translateY(20px);
+  background: var(--ink); color: #fff; padding: 14px 22px; border-radius: 999px;
+  font-weight: 800; font-size: 18px; box-shadow: var(--shadow);
+  opacity: 0; transition: opacity .25s ease, transform .25s ease; z-index: 50;
+  max-width: 88vw; text-align: center;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ============================= iOS hint ============================= */
+.ios-hint {
+  position: fixed; inset: 0; background: rgba(40,10,40,.55);
+  display: flex; align-items: center; justify-content: center; z-index: 60; padding: 20px;
+}
+.ios-hint-card {
+  background: #fff; border-radius: 24px; padding: 24px; max-width: 360px; text-align: center;
+  box-shadow: var(--shadow);
+}
+.ios-hint-card h3 { color: var(--hot); font-size: 24px; margin: 0 0 10px; }
+.ios-share { font-family: -apple-system, sans-serif; }
+
+/* subtle floaty animation for the shutter to invite tapping */
+@media (prefers-reduced-motion: no-preference) {
+  .shutter { animation: pulse 2.4s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { box-shadow: 0 0 0 8px rgba(255,255,255,.6), var(--shadow); } 50% { box-shadow: 0 0 0 14px rgba(255,92,200,.35), var(--shadow); } }
+}
+
+/* landscape iPad: put trays a bit shorter */
+@media (orientation: landscape) {
+  .ed-tray { max-height: 40vh; }
+}

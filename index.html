@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#ff5cc8" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Mae's Camera" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="description" content="A magical camera studio for kids — take photos, add 80+ face stickers, draw, and use fun filters." />
+  <title>Mae's Camera Studio ✨</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/icon-180.png" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- ============================ CAMERA SCREEN ============================ -->
+  <section id="screen-camera" class="screen active">
+    <div class="cam-topbar">
+      <div class="brand">✨ Mae's Camera</div>
+      <div class="top-actions">
+        <button id="btn-install" class="pill hidden" title="Install app">⬇️ Install</button>
+        <button id="btn-open-gallery" class="pill" title="My Photos">🖼️ <span id="gallery-count">0</span></button>
+      </div>
+    </div>
+
+    <div class="cam-stage">
+      <video id="video" playsinline autoplay muted></video>
+      <div id="cam-flash" class="flash"></div>
+      <div id="cam-message" class="cam-message hidden"></div>
+      <div id="countdown" class="countdown hidden"></div>
+    </div>
+
+    <div class="cam-controls">
+      <button id="btn-timer" class="round small" title="Timer">⏱️<span id="timer-label">Off</span></button>
+      <button id="btn-shutter" class="shutter" title="Take photo" aria-label="Take photo"></button>
+      <button id="btn-flip" class="round small" title="Flip camera">🔄<span>Flip</span></button>
+    </div>
+  </section>
+
+  <!-- ============================ EDITOR SCREEN ============================ -->
+  <section id="screen-editor" class="screen">
+    <div class="ed-topbar">
+      <button id="btn-retake" class="pill">↩️ Retake</button>
+      <div class="ed-mid">
+        <button id="btn-undo" class="pill icon" title="Undo" disabled>↶</button>
+        <button id="btn-redo" class="pill icon" title="Redo" disabled>↷</button>
+        <span id="face-badge" class="face-badge hidden">😀 0</span>
+      </div>
+      <button id="btn-save" class="pill primary">💾 Save</button>
+    </div>
+
+    <div class="ed-stage">
+      <canvas id="canvas"></canvas>
+      <div id="sel-toolbar" class="sel-toolbar hidden">
+        <button data-act="smaller" title="Smaller">➖</button>
+        <button data-act="bigger" title="Bigger">➕</button>
+        <button data-act="rotate" title="Turn">🔁</button>
+        <button data-act="flip" title="Flip">↔️</button>
+        <button data-act="delete" class="danger" title="Remove">🗑️</button>
+      </div>
+    </div>
+
+    <div class="ed-tabs">
+      <button class="tab active" data-tab="stickers">🎉 Stickers</button>
+      <button class="tab" data-tab="draw">🖍️ Draw</button>
+      <button class="tab" data-tab="filters">🎨 Filters</button>
+      <button class="tab" data-tab="magic">🪄 Magic</button>
+    </div>
+
+    <div class="ed-tray">
+      <!-- Stickers -->
+      <div class="tray-panel active" data-panel="stickers">
+        <div id="sticker-cats" class="chip-row"></div>
+        <div id="sticker-grid" class="sticker-grid"></div>
+      </div>
+
+      <!-- Draw -->
+      <div class="tray-panel" data-panel="draw">
+        <div id="brush-row" class="chip-row"></div>
+        <div id="color-row" class="color-row"></div>
+        <div class="size-row">
+          <span>Size</span>
+          <input id="brush-size" type="range" min="4" max="48" value="14" />
+          <button id="btn-clear-draw" class="pill">🧼 Clear Drawing</button>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="tray-panel" data-panel="filters">
+        <div id="filter-grid" class="filter-grid"></div>
+      </div>
+
+      <!-- Magic -->
+      <div class="tray-panel" data-panel="magic">
+        <div class="magic-row">
+          <button id="btn-surprise" class="big-btn">🪄 Surprise Me!</button>
+          <button id="btn-clear-stickers" class="big-btn alt">🧹 Clear Stickers</button>
+        </div>
+        <p class="hint" id="magic-hint">Tap a face sticker and it jumps onto everyone in the photo! 🎩❤️</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ GALLERY SCREEN ============================ -->
+  <section id="screen-gallery" class="screen">
+    <div class="ed-topbar">
+      <button id="btn-gallery-back" class="pill">↩️ Camera</button>
+      <div class="brand">🖼️ My Photos</div>
+      <span style="width:90px"></span>
+    </div>
+    <div id="gallery-grid" class="gallery-grid"></div>
+    <div id="gallery-empty" class="gallery-empty">No photos yet — go take some! 📸</div>
+  </section>
+
+  <!-- Toast -->
+  <div id="toast" class="toast hidden"></div>
+
+  <!-- iOS install hint -->
+  <div id="ios-hint" class="ios-hint hidden">
+    <div class="ios-hint-card">
+      <h3>Add to Home Screen 🏠</h3>
+      <p>Tap <b>Share</b> <span class="ios-share">􀈂</span> then <b>“Add to Home Screen”</b> to play like a real app!</p>
+      <button id="ios-hint-close" class="pill primary">Got it!</button>
+    </div>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
