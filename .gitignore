@@ -9,3 +9,4 @@ scripts/preview.log
 *.log
 scripts/ui-*.png
 scripts/shot-ui-*.png
+scripts/preview-bighead.png
