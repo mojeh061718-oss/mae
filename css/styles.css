@@ -441,3 +441,48 @@ img { -webkit-user-drag: none; user-drag: none; }
 @media (orientation: landscape) and (max-height: 560px) {
   .ed-tray { max-height: 44vh; }
 }
+
+/* ---- additions: booth, frames, confetti, countdown caption ---- */
+.cam-overlay-top .brand .ico { filter: brightness(0) invert(1); opacity: 1; }
+.brand .ico { width: 1.05em; height: 1.05em; vertical-align: -0.16em; }
+.glass-label { }
+
+.tab .ico { width: 22px; height: 22px; }
+.tab-label { }
+@media (max-width: 600px) {
+  .tab-label { display: none; }
+  .tab { padding: 13px 4px; }
+  .tab .ico { width: 24px; height: 24px; }
+}
+@media (max-width: 430px) {
+  .glass-label { display: none; }
+}
+
+.cd-caption {
+  position: absolute; bottom: 16%;
+  color: #fff; font-weight: 900; letter-spacing: 1px;
+  font-size: clamp(30px, 8vw, 60px);
+  text-shadow: 0 4px 18px rgba(0,0,0,.55);
+}
+.booth-counter {
+  position: absolute; top: 14%;
+  color: #fff; font-weight: 800; font-size: clamp(18px, 4vw, 26px);
+  background: rgba(0,0,0,.35); padding: 6px 16px; border-radius: 999px;
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+}
+
+.confetti-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 55; }
+
+.brush-chip .ico { width: 24px; height: 24px; filter: brightness(0); opacity: 0.82; }
+.brush-chip.active .ico { filter: brightness(0) invert(1); opacity: 1; }
+
+/* frame preview tiles reuse .filter-btn; show a mini frame swatch */
+.frame-btn .sw {
+  background: repeating-conic-gradient(#eee 0% 25%, #fff 0% 50%) 50% / 14px 14px;
+  position: relative; overflow: hidden;
+}
+.frame-btn .sw img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.frame-btn .sw.none::after {
+  content: ""; position: absolute; inset: 30% 18%;
+  border: 3px dashed #c7b8dd; border-radius: 6px;
+}

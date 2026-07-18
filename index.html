@@ -8,8 +8,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Mae's Camera" />
   <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="description" content="A magical camera studio for kids — take photos, add 80+ face stickers, draw, and use fun filters." />
-  <title>Mae's Camera Studio ✨</title>
+  <meta name="description" content="A magical camera studio for kids — take photos, add face stickers, draw, use fun filters, frames and a photo booth." />
+  <title>Mae's Camera Studio</title>
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" href="icons/icon-192.png" />
   <link rel="apple-touch-icon" href="icons/icon-180.png" />
@@ -18,7 +18,6 @@
 <body>
   <!-- ============================ CAMERA SCREEN ============================ -->
   <section id="screen-camera" class="screen active">
-    <!-- full-bleed live camera -->
     <video id="video" playsinline autoplay muted></video>
     <div id="cam-flash" class="flash"></div>
     <div id="cam-message" class="cam-message hidden"></div>
@@ -28,81 +27,84 @@
         <circle id="cd-progress" class="cd-progress" cx="50" cy="50" r="45"></circle>
       </svg>
       <div id="cd-num" class="cd-num">10</div>
+      <div id="cd-caption" class="cd-caption hidden"></div>
+      <div id="cd-counter" class="booth-counter hidden"></div>
     </div>
 
-    <!-- floating overlays -->
     <div class="cam-overlay-top">
-      <div class="brand">✨ Mae's Camera</div>
+      <div class="brand"><img class="ico brand-ico" src="assets/ui/tab-stickers.svg" alt="" /> Mae's Camera</div>
       <div class="top-actions">
-        <button id="btn-install" class="glass glass-pill hidden" title="Install app"><img class="ico" src="assets/ui/install.svg" alt=""> Install</button>
-        <button id="btn-open-gallery" class="glass glass-pill" title="My Photos"><img class="ico" src="assets/ui/gallery.svg" alt=""> <span id="gallery-count">0</span></button>
+        <button id="btn-booth" class="glass glass-pill" title="Photo Booth"><img class="ico" src="assets/ui/grid.svg" alt="" /> <span class="glass-label">Booth</span></button>
+        <button id="btn-install" class="glass glass-pill hidden" title="Install app"><img class="ico" src="assets/ui/install.svg" alt="" /> Install</button>
+        <button id="btn-open-gallery" class="glass glass-pill" title="My Photos"><img class="ico" src="assets/ui/gallery.svg" alt="" /> <span id="gallery-count">0</span></button>
       </div>
     </div>
 
     <div class="cam-overlay-bottom">
-      <button id="btn-timer" class="glass cam-ctl" title="Self timer"><img class="ico" src="assets/ui/timer.svg" alt=""><span id="timer-label">Off</span></button>
+      <button id="btn-timer" class="glass cam-ctl" title="Self timer"><img class="ico" src="assets/ui/timer.svg" alt="" /><span id="timer-label">Off</span></button>
       <button id="btn-shutter" class="shutter" title="Take photo" aria-label="Take photo"></button>
-      <button id="btn-flip" class="glass cam-ctl" title="Flip camera"><img class="ico" src="assets/ui/flip.svg" alt=""><span>Flip</span></button>
+      <button id="btn-flip" class="glass cam-ctl" title="Flip camera"><img class="ico" src="assets/ui/flip.svg" alt="" /><span>Flip</span></button>
     </div>
   </section>
 
   <!-- ============================ EDITOR SCREEN ============================ -->
   <section id="screen-editor" class="screen">
     <div class="ed-topbar">
-      <button id="btn-retake" class="pill"><img class="ico" src="assets/ui/retake.svg" alt=""> Retake</button>
+      <button id="btn-retake" class="pill"><img class="ico" src="assets/ui/retake.svg" alt="" /> Retake</button>
       <div class="ed-mid">
-        <button id="btn-undo" class="pill icon" title="Undo" disabled><img class="ico" src="assets/ui/undo.svg" alt=""></button>
-        <button id="btn-redo" class="pill icon" title="Redo" disabled><img class="ico" src="assets/ui/redo.svg" alt=""></button>
-        <span id="autosave-badge" class="autosave-badge"><img class="ico" src="assets/ui/done.svg" alt=""> Saved</span>
+        <button id="btn-undo" class="pill icon" title="Undo" disabled><img class="ico" src="assets/ui/undo.svg" alt="" /></button>
+        <button id="btn-redo" class="pill icon" title="Redo" disabled><img class="ico" src="assets/ui/redo.svg" alt="" /></button>
+        <span id="autosave-badge" class="autosave-badge"><img class="ico" src="assets/ui/done.svg" alt="" /> Saved</span>
       </div>
-      <button id="btn-save" class="pill primary"><img class="ico" src="assets/ui/done.svg" alt=""> Done</button>
+      <button id="btn-save" class="pill primary"><img class="ico" src="assets/ui/done.svg" alt="" /> Done</button>
     </div>
 
     <div class="ed-stage">
       <canvas id="canvas"></canvas>
       <div id="sel-toolbar" class="sel-toolbar hidden">
-        <button data-act="smaller" title="Smaller">➖</button>
-        <button data-act="bigger" title="Bigger">➕</button>
-        <button data-act="rotate" title="Turn">🔁</button>
-        <button data-act="flip" title="Flip">↔️</button>
-        <button data-act="delete" class="danger" title="Remove">🗑️</button>
+        <button data-act="smaller" title="Smaller"><img class="ico" src="assets/ui/minus.svg" alt="" /></button>
+        <button data-act="bigger" title="Bigger"><img class="ico" src="assets/ui/plus.svg" alt="" /></button>
+        <button data-act="rotate" title="Turn"><img class="ico" src="assets/ui/rotate.svg" alt="" /></button>
+        <button data-act="flip" title="Flip"><img class="ico" src="assets/ui/fliph.svg" alt="" /></button>
+        <button data-act="delete" class="danger" title="Remove"><img class="ico" src="assets/ui/trash.svg" alt="" /></button>
       </div>
     </div>
 
     <div class="ed-tabs">
-      <button class="tab active" data-tab="stickers"><img class="ico" src="assets/ui/tab-stickers.svg" alt=""> Stickers</button>
-      <button class="tab" data-tab="draw"><img class="ico" src="assets/ui/tab-draw.svg" alt=""> Draw</button>
-      <button class="tab" data-tab="filters"><img class="ico" src="assets/ui/tab-filters.svg" alt=""> Filters</button>
-      <button class="tab" data-tab="magic"><img class="ico" src="assets/ui/tab-magic.svg" alt=""> Magic</button>
+      <button class="tab active" data-tab="stickers"><img class="ico" src="assets/ui/tab-stickers.svg" alt="" /><span class="tab-label">Stickers</span></button>
+      <button class="tab" data-tab="draw"><img class="ico" src="assets/ui/tab-draw.svg" alt="" /><span class="tab-label">Draw</span></button>
+      <button class="tab" data-tab="filters"><img class="ico" src="assets/ui/tab-filters.svg" alt="" /><span class="tab-label">Filters</span></button>
+      <button class="tab" data-tab="frames"><img class="ico" src="assets/ui/frame.svg" alt="" /><span class="tab-label">Frames</span></button>
+      <button class="tab" data-tab="magic"><img class="ico" src="assets/ui/tab-magic.svg" alt="" /><span class="tab-label">Magic</span></button>
     </div>
 
     <div class="ed-tray">
-      <!-- Stickers -->
       <div class="tray-panel active" data-panel="stickers">
         <div id="sticker-cats" class="chip-row"></div>
         <div id="sticker-grid" class="sticker-grid"></div>
       </div>
 
-      <!-- Draw -->
       <div class="tray-panel" data-panel="draw">
         <div id="brush-row" class="chip-row"></div>
         <div id="color-row" class="color-row"></div>
         <div class="size-row">
           <span>Size</span>
           <input id="brush-size" type="range" min="4" max="48" value="14" />
-          <button id="btn-clear-draw" class="pill">🧼 Clear Drawing</button>
+          <button id="btn-clear-draw" class="pill"><img class="ico" src="assets/ui/broom.svg" alt="" /> Clear Drawing</button>
         </div>
       </div>
 
-      <!-- Filters -->
       <div class="tray-panel" data-panel="filters">
         <div id="filter-grid" class="filter-grid"></div>
       </div>
 
-      <!-- Magic -->
+      <div class="tray-panel" data-panel="frames">
+        <div id="frame-grid" class="filter-grid"></div>
+      </div>
+
       <div class="tray-panel" data-panel="magic">
         <div class="magic-row">
-          <button id="btn-surprise" class="big-btn"><img class="ico" src="assets/ui/tab-magic.svg" alt=""> Surprise Me!</button>
+          <button id="btn-surprise" class="big-btn"><img class="ico" src="assets/ui/tab-magic.svg" alt="" /> Surprise Me!</button>
           <button id="btn-clear-stickers" class="big-btn alt">Clear Stickers</button>
         </div>
         <p class="hint" id="magic-hint">Tap a face sticker and it jumps onto everyone in the photo!</p>
@@ -113,21 +115,22 @@
   <!-- ============================ GALLERY SCREEN ============================ -->
   <section id="screen-gallery" class="screen">
     <div class="ed-topbar">
-      <button id="btn-gallery-back" class="pill">↩️ Camera</button>
-      <div class="brand">🖼️ My Photos</div>
+      <button id="btn-gallery-back" class="pill"><img class="ico" src="assets/ui/back.svg" alt="" /> Camera</button>
+      <div class="brand"><img class="ico brand-ico" src="assets/ui/gallery.svg" alt="" /> My Photos</div>
       <span style="width:90px"></span>
     </div>
     <div id="gallery-grid" class="gallery-grid"></div>
-    <div id="gallery-empty" class="gallery-empty">No photos yet — go take some! 📸</div>
+    <div id="gallery-empty" class="gallery-empty">No photos yet — go take some!</div>
   </section>
 
-  <!-- Toast -->
+  <!-- Confetti + toast -->
+  <canvas id="confetti" class="confetti-canvas hidden"></canvas>
   <div id="toast" class="toast hidden"></div>
 
   <!-- iOS install hint -->
   <div id="ios-hint" class="ios-hint hidden">
     <div class="ios-hint-card">
-      <h3>Add to Home Screen 🏠</h3>
+      <h3>Add to Home Screen</h3>
       <p>Tap <b>Share</b> <span class="ios-share">􀈂</span> then <b>“Add to Home Screen”</b> to play like a real app!</p>
       <button id="ios-hint-close" class="pill primary">Got it!</button>
     </div>

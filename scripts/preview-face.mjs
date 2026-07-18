@@ -36,19 +36,28 @@ async function main() {
       ({ asset: 'assets/stickers/' + asset, anchor, scale, offsetY: offsetY || 0, perEye: !!perEye, faceTracked: true });
     editor.addFaceSticker(S('crown.svg', 'crown', 0.95, -0.55));
     editor.addFaceSticker(S('sunglasses.svg', 'eyes', 1.1));
-    editor.addFaceSticker(S('mustache.svg', 'mouth', 0.75, -0.06));
     editor.addFaceSticker(S('blush.svg', 'cheeks', 0.34));
-    // wait until every used sticker image is decoded, then render a clean frame
-    const urls = ['crown', 'sunglasses', 'mustache', 'blush'].map((n) => 'assets/stickers/' + n + '.svg');
+    editor.setFrame('rainbow');
+    // wait until sticker + frame images are decoded, then render clean frames
+    const urls = ['assets/stickers/crown.svg', 'assets/stickers/sunglasses.svg',
+      'assets/stickers/blush.svg', 'assets/frames/rainbow.svg'];
     await Promise.all(urls.map((u) => load(base + '/' + u)));
     await new Promise((r) => setTimeout(r, 300));
     editor.render();
-    return editor.canvas.toDataURL('image/png');
+    const framed = editor.canvas.toDataURL('image/png');
+
+    // second image: Big Head funny effect
+    editor.setFrame('none');
+    editor.placed = [];
+    editor.setFilter('bighead');
+    editor.render();
+    const bighead = editor.canvas.toDataURL('image/png');
+    return { framed, bighead };
   }, BASE);
 
-  const b64 = dataUrl.split(',')[1];
   const { writeFileSync } = await import('node:fs');
-  writeFileSync('scripts/preview-face.png', Buffer.from(b64, 'base64'));
+  writeFileSync('scripts/preview-face.png', Buffer.from(dataUrl.framed.split(',')[1], 'base64'));
+  writeFileSync('scripts/preview-bighead.png', Buffer.from(dataUrl.bighead.split(',')[1], 'base64'));
   await browser.close();
   server.kill();
   console.log('preview-face.png written');

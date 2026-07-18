@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" width="900" height="1200">
+  <defs>
+    <radialGradient id="stars_gold" cx="0.35" cy="0.3" r="0.85">
+      <stop offset="0" stop-color="#fff4c2"/>
+      <stop offset="0.5" stop-color="#ffd23f"/>
+      <stop offset="1" stop-color="#f2a516"/>
+    </radialGradient>
+    <filter id="stars_shadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#8a5a00" flood-opacity="0.35"/>
+    </filter>
+    <g id="stars_star">
+      <path d="M0,-48 L11.2,-15.4 L45.6,-14.8 L18.1,5.9 L28.2,38.8 L0,19 L-28.2,38.8 L-18.1,5.9 L-45.6,-14.8 L-11.2,-15.4 Z"
+            fill="url(#stars_gold)" stroke="#ffcf3f" stroke-width="2"/>
+      <ellipse cx="-12" cy="-20" rx="9" ry="6" fill="#ffffff" opacity="0.6" transform="rotate(-25 -12 -20)"/>
+    </g>
+    <g id="stars_sparkle">
+      <path d="M0,-14 C1.5,-3 3,-1.5 14,0 C3,1.5 1.5,3 0,14 C-1.5,3 -3,1.5 -14,0 C-3,-1.5 -1.5,-3 0,-14 Z" fill="#fff6cf"/>
+    </g>
+  </defs>
+
+  <g filter="url(#stars_shadow)">
+    <!-- TOP EDGE -->
+    <use href="#stars_star" transform="translate(115,54) scale(0.9) rotate(-10)"/>
+    <use href="#stars_star" transform="translate(300,50) scale(0.8) rotate(8)"/>
+    <use href="#stars_star" transform="translate(450,56) scale(0.66) rotate(-6)"/>
+    <use href="#stars_star" transform="translate(600,50) scale(0.8) rotate(10)"/>
+    <use href="#stars_star" transform="translate(785,54) scale(0.9) rotate(-8)"/>
+    <!-- BOTTOM EDGE -->
+    <use href="#stars_star" transform="translate(115,1146) scale(0.9) rotate(10)"/>
+    <use href="#stars_star" transform="translate(300,1150) scale(0.8) rotate(-8)"/>
+    <use href="#stars_star" transform="translate(450,1144) scale(0.66) rotate(6)"/>
+    <use href="#stars_star" transform="translate(600,1150) scale(0.8) rotate(-10)"/>
+    <use href="#stars_star" transform="translate(785,1146) scale(0.9) rotate(8)"/>
+    <!-- LEFT EDGE -->
+    <use href="#stars_star" transform="translate(52,240) scale(0.8) rotate(-8)"/>
+    <use href="#stars_star" transform="translate(50,430) scale(0.66) rotate(10)"/>
+    <use href="#stars_star" transform="translate(52,600) scale(0.8) rotate(-6)"/>
+    <use href="#stars_star" transform="translate(50,770) scale(0.66) rotate(8)"/>
+    <use href="#stars_star" transform="translate(52,960) scale(0.8) rotate(-10)"/>
+    <!-- RIGHT EDGE -->
+    <use href="#stars_star" transform="translate(848,240) scale(0.8) rotate(8)"/>
+    <use href="#stars_star" transform="translate(850,430) scale(0.66) rotate(-10)"/>
+    <use href="#stars_star" transform="translate(848,600) scale(0.8) rotate(6)"/>
+    <use href="#stars_star" transform="translate(850,770) scale(0.66) rotate(-8)"/>
+    <use href="#stars_star" transform="translate(848,960) scale(0.8) rotate(10)"/>
+    <!-- CORNER CLUSTERS -->
+    <use href="#stars_star" transform="translate(62,62) scale(0.7) rotate(-18)"/>
+    <use href="#stars_star" transform="translate(160,58) scale(0.5) rotate(12)"/>
+    <use href="#stars_star" transform="translate(58,160) scale(0.5) rotate(-12)"/>
+    <use href="#stars_star" transform="translate(838,62) scale(0.7) rotate(18)"/>
+    <use href="#stars_star" transform="translate(740,58) scale(0.5) rotate(-12)"/>
+    <use href="#stars_star" transform="translate(842,160) scale(0.5) rotate(12)"/>
+    <use href="#stars_star" transform="translate(62,1138) scale(0.7) rotate(18)"/>
+    <use href="#stars_star" transform="translate(160,1142) scale(0.5) rotate(-12)"/>
+    <use href="#stars_star" transform="translate(58,1040) scale(0.5) rotate(12)"/>
+    <use href="#stars_star" transform="translate(838,1138) scale(0.7) rotate(-18)"/>
+    <use href="#stars_star" transform="translate(740,1142) scale(0.5) rotate(12)"/>
+    <use href="#stars_star" transform="translate(842,1040) scale(0.5) rotate(-12)"/>
+  </g>
+
+  <!-- sparkles -->
+  <g>
+    <use href="#stars_sparkle" transform="translate(210,50) scale(0.9)"/>
+    <use href="#stars_sparkle" transform="translate(525,48) scale(0.7)"/>
+    <use href="#stars_sparkle" transform="translate(690,52) scale(0.9)"/>
+    <use href="#stars_sparkle" transform="translate(210,1150) scale(0.9)"/>
+    <use href="#stars_sparkle" transform="translate(525,1152) scale(0.7)"/>
+    <use href="#stars_sparkle" transform="translate(690,1148) scale(0.9)"/>
+    <use href="#stars_sparkle" transform="translate(50,330) scale(0.8)"/>
+    <use href="#stars_sparkle" transform="translate(52,690) scale(0.8)"/>
+    <use href="#stars_sparkle" transform="translate(850,330) scale(0.8)"/>
+    <use href="#stars_sparkle" transform="translate(848,690) scale(0.8)"/>
+    <use href="#stars_sparkle" transform="translate(120,120) scale(0.7)"/>
+    <use href="#stars_sparkle" transform="translate(780,120) scale(0.7)"/>
+    <use href="#stars_sparkle" transform="translate(120,1080) scale(0.7)"/>
+    <use href="#stars_sparkle" transform="translate(780,1080) scale(0.7)"/>
+  </g>
+</svg>

@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" width="900" height="1200">
+  <defs>
+    <filter id="confetti_shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#000000" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+  <g filter="url(#confetti_shadow)" stroke-linecap="round">
+    <!-- ================= TOP EDGE ================= -->
+    <rect x="106" y="36" width="14" height="24" rx="3" fill="#ff2d6f" transform="rotate(-24 113 48)"/>
+    <circle cx="170" cy="54" r="8" fill="#3fa9ff"/>
+    <path d="M205,60 q9,-13 18,0 q9,13 18,0" fill="none" stroke="#4cd964" stroke-width="5"/>
+    <rect x="262" y="42" width="13" height="22" rx="3" fill="#ffd23f" transform="rotate(30 268 53)"/>
+    <circle cx="322" cy="50" r="7" fill="#a05cff"/>
+    <rect x="360" y="46" width="14" height="24" rx="3" fill="#ff5cc8" transform="rotate(-16 367 58)"/>
+    <path d="M410,56 q9,-13 18,0 q9,13 18,0" fill="none" stroke="#ff9a3f" stroke-width="5"/>
+    <circle cx="470" cy="48" r="8" fill="#4cd964"/>
+    <rect x="512" y="40" width="13" height="22" rx="3" fill="#3fa9ff" transform="rotate(22 518 51)"/>
+    <circle cx="566" cy="56" r="7" fill="#ff2d6f"/>
+    <rect x="606" y="46" width="14" height="24" rx="3" fill="#ffd23f" transform="rotate(-28 613 58)"/>
+    <path d="M652,58 q9,-13 18,0 q9,13 18,0" fill="none" stroke="#a05cff" stroke-width="5"/>
+    <circle cx="716" cy="50" r="8" fill="#ff9a3f"/>
+    <rect x="758" y="42" width="13" height="22" rx="3" fill="#4cd964" transform="rotate(18 764 53)"/>
+    <circle cx="812" cy="54" r="7" fill="#ff5cc8"/>
+
+    <!-- ================= BOTTOM EDGE ================= -->
+    <rect x="106" y="1140" width="14" height="24" rx="3" fill="#3fa9ff" transform="rotate(20 113 1152)"/>
+    <circle cx="170" cy="1148" r="8" fill="#ffd23f"/>
+    <path d="M205,1150 q9,-13 18,0 q9,13 18,0" fill="none" stroke="#ff2d6f" stroke-width="5"/>
+    <rect x="262" y="1138" width="13" height="22" rx="3" fill="#a05cff" transform="rotate(-26 268 1149)"/>
+    <circle cx="322" cy="1152" r="7" fill="#4cd964"/>
+    <rect x="360" y="1142" width="14" height="24" rx="3" fill="#ff9a3f" transform="rotate(14 367 1154)"/>
+    <path d="M410,1150 q9,-13 18,0 q9,13 18,0" fill="none" stroke="#ff5cc8" stroke-width="5"/>
+    <circle cx="470" cy="1146" r="8" fill="#3fa9ff"/>
+    <rect x="512" y="1140" width="13" height="22" rx="3" fill="#ffd23f" transform="rotate(-20 518 1151)"/>
+    <circle cx="566" cy="1152" r="7" fill="#a05cff"/>
+    <rect x="606" y="1142" width="14" height="24" rx="3" fill="#4cd964" transform="rotate(26 613 1154)"/>
+    <path d="M652,1150 q9,-13 18,0 q9,13 18,0" fill="none" stroke="#ffd23f" stroke-width="5"/>
+    <circle cx="716" cy="1148" r="8" fill="#ff2d6f"/>
+    <rect x="758" y="1138" width="13" height="22" rx="3" fill="#ff5cc8" transform="rotate(-16 764 1149)"/>
+    <circle cx="812" cy="1150" r="7" fill="#3fa9ff"/>
+
+    <!-- ================= LEFT EDGE ================= -->
+    <rect x="42" y="210" width="13" height="22" rx="3" fill="#ff2d6f" transform="rotate(18 48 221)"/>
+    <circle cx="54" cy="290" r="7" fill="#4cd964"/>
+    <path d="M36,360 q13,9 0,18 q-13,9 0,18" fill="none" stroke="#3fa9ff" stroke-width="5"/>
+    <rect x="44" y="430" width="14" height="24" rx="3" fill="#ffd23f" transform="rotate(-22 51 442)"/>
+    <circle cx="52" cy="520" r="8" fill="#a05cff"/>
+    <rect x="42" y="590" width="13" height="22" rx="3" fill="#ff9a3f" transform="rotate(26 48 601)"/>
+    <path d="M36,660 q13,9 0,18 q-13,9 0,18" fill="none" stroke="#ff5cc8" stroke-width="5"/>
+    <circle cx="52" cy="740" r="7" fill="#4cd964"/>
+    <rect x="44" y="800" width="14" height="24" rx="3" fill="#3fa9ff" transform="rotate(-18 51 812)"/>
+    <circle cx="52" cy="880" r="8" fill="#ffd23f"/>
+    <rect x="42" y="950" width="13" height="22" rx="3" fill="#ff2d6f" transform="rotate(20 48 961)"/>
+
+    <!-- ================= RIGHT EDGE ================= -->
+    <rect x="845" y="210" width="13" height="22" rx="3" fill="#a05cff" transform="rotate(-18 851 221)"/>
+    <circle cx="846" cy="290" r="7" fill="#ffd23f"/>
+    <path d="M864,360 q-13,9 0,18 q13,9 0,18" fill="none" stroke="#ff2d6f" stroke-width="5"/>
+    <rect x="842" y="430" width="14" height="24" rx="3" fill="#4cd964" transform="rotate(22 849 442)"/>
+    <circle cx="848" cy="520" r="8" fill="#3fa9ff"/>
+    <rect x="845" y="590" width="13" height="22" rx="3" fill="#ff5cc8" transform="rotate(-26 851 601)"/>
+    <path d="M864,660 q-13,9 0,18 q13,9 0,18" fill="none" stroke="#ff9a3f" stroke-width="5"/>
+    <circle cx="848" cy="740" r="7" fill="#a05cff"/>
+    <rect x="842" y="800" width="14" height="24" rx="3" fill="#ffd23f" transform="rotate(18 849 812)"/>
+    <circle cx="848" cy="880" r="8" fill="#ff2d6f"/>
+    <rect x="845" y="950" width="13" height="22" rx="3" fill="#4cd964" transform="rotate(-20 851 961)"/>
+
+    <!-- ================= CORNER CLUSTERS (denser) ================= -->
+    <!-- top-left -->
+    <rect x="60" y="60" width="14" height="24" rx="3" fill="#ff5cc8" transform="rotate(35 67 72)"/>
+    <circle cx="112" cy="96" r="7" fill="#ffd23f"/>
+    <path d="M60,120 q9,-12 18,0 q9,12 18,0" fill="none" stroke="#3fa9ff" stroke-width="5"/>
+    <rect x="150" y="70" width="12" height="20" rx="3" fill="#4cd964" transform="rotate(-30 156 80)"/>
+    <circle cx="80" cy="150" r="6" fill="#a05cff"/>
+    <!-- top-right -->
+    <rect x="826" y="60" width="14" height="24" rx="3" fill="#3fa9ff" transform="rotate(-35 833 72)"/>
+    <circle cx="788" cy="96" r="7" fill="#ff2d6f"/>
+    <path d="M804,120 q9,-12 18,0 q9,12 18,0" fill="none" stroke="#ffd23f" stroke-width="5"/>
+    <rect x="738" y="70" width="12" height="20" rx="3" fill="#ff9a3f" transform="rotate(30 744 80)"/>
+    <circle cx="820" cy="150" r="6" fill="#4cd964"/>
+    <!-- bottom-left -->
+    <rect x="60" y="1116" width="14" height="24" rx="3" fill="#ffd23f" transform="rotate(-35 67 1128)"/>
+    <circle cx="112" cy="1104" r="7" fill="#a05cff"/>
+    <path d="M60,1088 q9,-12 18,0 q9,12 18,0" fill="none" stroke="#ff5cc8" stroke-width="5"/>
+    <rect x="150" y="1110" width="12" height="20" rx="3" fill="#3fa9ff" transform="rotate(30 156 1120)"/>
+    <circle cx="80" cy="1050" r="6" fill="#ff9a3f"/>
+    <!-- bottom-right -->
+    <rect x="826" y="1116" width="14" height="24" rx="3" fill="#ff2d6f" transform="rotate(35 833 1128)"/>
+    <circle cx="788" cy="1104" r="7" fill="#4cd964"/>
+    <path d="M804,1088 q9,-12 18,0 q9,12 18,0" fill="none" stroke="#a05cff" stroke-width="5"/>
+    <rect x="738" y="1110" width="12" height="20" rx="3" fill="#ffd23f" transform="rotate(-30 744 1120)"/>
+    <circle cx="820" cy="1050" r="6" fill="#ff5cc8"/>
+  </g>
+</svg>

@@ -135,6 +135,43 @@ async function main() {
   });
   ok('undo works', undoWorks);
 
+  // 7b. Photo Booth builds a 2x2 collage from 4 frames.
+  const collageOk = await page.evaluate(() => {
+    const { grabFrame, buildCollage } = window.__mae;
+    const shots = [grabFrame(), grabFrame(), grabFrame(), grabFrame()];
+    const c = buildCollage(shots);
+    return c && c.width === 900 && c.height === 1200;
+  });
+  ok('photo booth builds a 2x2 collage', collageOk);
+
+  // 7c. A frame overlays without crashing.
+  const frameOk = await page.evaluate(async () => {
+    const ed = window.__mae.editor;
+    ed.setFrame('rainbow');
+    await new Promise((r) => setTimeout(r, 500));
+    ed.render();
+    const applied = ed.frame === 'rainbow';
+    ed.setFrame('none');
+    return applied;
+  });
+  ok('frames apply to the photo', frameOk);
+
+  // 7d. Big-Head warp renders (funny mirror effect).
+  const warpOk = await page.evaluate(() => {
+    const ed = window.__mae.editor;
+    ed.setFilter('bighead'); ed.render();
+    const ok = ed.width > 0;
+    ed.setFilter('none'); ed.render();
+    return ok;
+  });
+  ok('big-head warp renders', warpOk);
+
+  // 7e. Confetti fires without error.
+  const confettiOk = await page.evaluate(() => {
+    try { window.__mae.fireConfetti(); return true; } catch (_) { return false; }
+  });
+  ok('confetti celebration fires', confettiOk);
+
   // 8. Done -> autosave flush + back to camera; edits are in the gallery.
   await page.click('#btn-save');
   await page.waitForTimeout(500);

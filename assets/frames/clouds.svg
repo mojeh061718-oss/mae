@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" width="900" height="1200">
+  <defs>
+    <linearGradient id="clouds_sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#bfe3ff"/>
+      <stop offset="0.5" stop-color="#8fceff"/>
+      <stop offset="1" stop-color="#5fb6ff"/>
+    </linearGradient>
+    <radialGradient id="clouds_puff" cx="0.5" cy="0.35" r="0.75">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#e6f3ff"/>
+    </radialGradient>
+    <radialGradient id="clouds_sun" cx="0.4" cy="0.35" r="0.7">
+      <stop offset="0" stop-color="#fff3b0"/>
+      <stop offset="0.6" stop-color="#ffd23f"/>
+      <stop offset="1" stop-color="#ffb01f"/>
+    </radialGradient>
+    <filter id="clouds_shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#2a6ba0" flood-opacity="0.28"/>
+    </filter>
+    <g id="clouds_cloud">
+      <ellipse cx="0" cy="14" rx="70" ry="30" fill="url(#clouds_puff)"/>
+      <circle cx="-42" cy="6" r="26" fill="url(#clouds_puff)"/>
+      <circle cx="-8" cy="-14" r="34" fill="url(#clouds_puff)"/>
+      <circle cx="34" cy="-6" r="30" fill="url(#clouds_puff)"/>
+      <circle cx="56" cy="8" r="22" fill="url(#clouds_puff)"/>
+    </g>
+  </defs>
+
+  <!-- Sky-blue border ring, center transparent -->
+  <path fill="url(#clouds_sky)" fill-rule="evenodd"
+        d="M90 20 H810 A70 70 0 0 1 880 90 V1110 A70 70 0 0 1 810 1180 H90 A70 70 0 0 1 20 1110 V90 A70 70 0 0 1 90 20 Z
+           M150 105 A45 45 0 0 0 105 150 V1050 A45 45 0 0 0 150 1095 H750 A45 45 0 0 0 795 1050 V150 A45 45 0 0 0 750 105 Z"/>
+
+  <!-- tiny sun in the top-left corner -->
+  <g filter="url(#clouds_shadow)">
+    <g transform="translate(72,72)">
+      <g fill="#ffd23f">
+        <rect x="-4" y="-58" width="8" height="20" rx="4"/>
+        <rect x="-4" y="38" width="8" height="20" rx="4"/>
+        <rect x="-58" y="-4" width="20" height="8" rx="4"/>
+        <rect x="38" y="-4" width="20" height="8" rx="4"/>
+        <rect x="-4" y="-58" width="8" height="20" rx="4" transform="rotate(45)"/>
+        <rect x="-4" y="38" width="8" height="20" rx="4" transform="rotate(45)"/>
+        <rect x="-58" y="-4" width="20" height="8" rx="4" transform="rotate(45)"/>
+        <rect x="38" y="-4" width="20" height="8" rx="4" transform="rotate(45)"/>
+      </g>
+      <circle cx="0" cy="0" r="34" fill="url(#clouds_sun)"/>
+      <ellipse cx="-10" cy="-12" rx="10" ry="7" fill="#ffffff" opacity="0.5"/>
+    </g>
+  </g>
+
+  <!-- fluffy clouds along TOP -->
+  <g filter="url(#clouds_shadow)">
+    <use href="#clouds_cloud" transform="translate(320,46) scale(0.85)"/>
+    <use href="#clouds_cloud" transform="translate(560,54) scale(0.7)"/>
+    <use href="#clouds_cloud" transform="translate(760,44) scale(0.62)"/>
+    <!-- fluffy clouds along BOTTOM -->
+    <use href="#clouds_cloud" transform="translate(180,1150) scale(0.72)"/>
+    <use href="#clouds_cloud" transform="translate(430,1146) scale(0.85)"/>
+    <use href="#clouds_cloud" transform="translate(690,1152) scale(0.7)"/>
+    <!-- a couple of small side puffs -->
+    <use href="#clouds_cloud" transform="translate(56,420) scale(0.5)"/>
+    <use href="#clouds_cloud" transform="translate(844,760) scale(0.5)"/>
+  </g>
+</svg>

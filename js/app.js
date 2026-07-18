@@ -1,7 +1,7 @@
 // app.js — orchestrates screens, camera, editor, stickers, gallery, PWA.
 import { Camera } from './camera.js';
 import { FaceDetector } from './faces.js';
-import { Editor, FILTERS, BRUSHES, PAINT_COLORS } from './editor.js';
+import { Editor, FILTERS, FRAMES, frameAsset, BRUSHES, PAINT_COLORS } from './editor.js';
 import { STICKERS, CATEGORIES, stickersByCategory } from './stickers.js';
 import { Gallery } from './gallery.js';
 
@@ -98,15 +98,20 @@ $('#btn-shutter').addEventListener('click', async () => {
   await capture();
 });
 
-// Animated 10-second countdown ring visualiser.
+// Animated countdown ring visualiser (used by the self-timer and photo booth).
 const CIRC = 2 * Math.PI * 45;
-function runCountdown(seconds) {
+function runCountdown(seconds, opts = {}) {
   return new Promise((resolve) => {
     const wrap = $('#countdown');
     const ring = $('#cd-progress');
     const num = $('#cd-num');
+    const counter = $('#cd-counter');
+    const caption = $('#cd-caption');
     ring.style.strokeDasharray = `${CIRC}`;
     ring.style.strokeDashoffset = '0';
+    caption.classList.add('hidden');
+    if (opts.counter) { counter.textContent = opts.counter; counter.classList.remove('hidden'); }
+    else counter.classList.add('hidden');
     wrap.classList.remove('hidden');
 
     const total = seconds * 1000;
@@ -118,7 +123,6 @@ function runCountdown(seconds) {
       const elapsed = Math.min(total, ts - start);
       const p = elapsed / total;
       ring.style.strokeDashoffset = `${CIRC * p}`;
-      // color shifts green -> yellow -> red as time runs out
       const hue = 130 * (1 - p);
       ring.style.stroke = `hsl(${hue}, 90%, 55%)`;
 
@@ -135,21 +139,33 @@ function runCountdown(seconds) {
       if (elapsed < total) {
         requestAnimationFrame(frame);
       } else {
-        num.textContent = '📸';
+        num.textContent = '';
+        caption.textContent = 'Smile!';
+        caption.classList.remove('hidden');
         beep(1600, 0.18, 0.08);
-        setTimeout(() => { wrap.classList.add('hidden'); resolve(); }, 250);
+        setTimeout(() => {
+          wrap.classList.add('hidden');
+          counter.classList.add('hidden');
+          caption.classList.add('hidden');
+          resolve();
+        }, 300);
       }
     };
     requestAnimationFrame(frame);
   });
 }
 
-async function capture() {
-  if (!video.videoWidth) { toast('Camera is still waking up…'); return; }
+function doFlash() {
   const flash = $('#cam-flash');
   flash.classList.remove('go');
   void flash.offsetWidth;
   flash.classList.add('go');
+}
+const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+
+async function capture() {
+  if (!video.videoWidth) { toast('Camera is still waking up…'); return; }
+  doFlash();
   beep(1600, 0.12, 0.05);
 
   // Capture a clean 3:4 portrait photo (centered crop) — a real photo shape
@@ -158,6 +174,141 @@ async function capture() {
   openEditor();
   await startNewGalleryEntry(); // auto-save the fresh photo immediately
   detectFaces();
+}
+
+// ---------------------------------------------------------------- photo booth
+let boothBusy = false;
+$('#btn-booth').addEventListener('click', boothCapture);
+
+async function boothCapture() {
+  if (boothBusy) return;
+  if (!video.videoWidth) { toast('Camera is still waking up…'); return; }
+  boothBusy = true;
+  try {
+    beep(0, 0.001, 0.0001); // prime audio
+    const shots = [];
+    for (let i = 0; i < 4; i++) {
+      await runCountdown(3, { counter: `${i + 1} of 4` });
+      doFlash();
+      beep(1600, 0.12, 0.05);
+      shots.push(grabFrame());
+      await wait(320);
+    }
+    const collage = buildCollage(shots);
+    editor.setPhoto(collage, false, null);
+    openEditor();
+    await startNewGalleryEntry();
+    fireConfetti();
+    detectFaces();
+    toast('Photo booth strip made!');
+  } finally {
+    boothBusy = false;
+  }
+}
+
+// grab the current video frame cropped to 3:4 (mirrored for the selfie cam)
+function grabFrame() {
+  const vw = video.videoWidth, vh = video.videoHeight, targetA = 3 / 4;
+  let cw = vw, ch = vh, cx = 0, cy = 0;
+  if (vw / vh > targetA) { cw = vh * targetA; cx = (vw - cw) / 2; }
+  else { ch = vw / targetA; cy = (vh - ch) / 2; }
+  const outW = 640, outH = 853;
+  const c = document.createElement('canvas');
+  c.width = outW; c.height = outH;
+  const ctx = c.getContext('2d');
+  if (camera.isFrontFacing()) { ctx.translate(outW, 0); ctx.scale(-1, 1); }
+  ctx.drawImage(video, cx, cy, cw, ch, 0, 0, outW, outH);
+  return c;
+}
+
+function roundRectPath(ctx, x, y, w, h, r) {
+  const rr = Math.min(r, w / 2, h / 2);
+  ctx.beginPath();
+  ctx.moveTo(x + rr, y);
+  ctx.arcTo(x + w, y, x + w, y + h, rr);
+  ctx.arcTo(x + w, y + h, x, y + h, rr);
+  ctx.arcTo(x, y + h, x, y, rr);
+  ctx.arcTo(x, y, x + w, y, rr);
+  ctx.closePath();
+}
+
+// compose four shots into a cute 2x2 collage on a confetti gradient
+function buildCollage(shots) {
+  const W = 900, H = 1200;
+  const c = document.createElement('canvas');
+  c.width = W; c.height = H;
+  const ctx = c.getContext('2d');
+  const g = ctx.createLinearGradient(0, 0, W, H);
+  g.addColorStop(0, '#ff8fd6'); g.addColorStop(0.5, '#c97bff'); g.addColorStop(1, '#7b3ff2');
+  ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  const cols = ['#ffffff', '#ffd23f', '#4cd964', '#3fa9ff'];
+  for (let i = 0; i < 70; i++) {
+    ctx.fillStyle = cols[i % cols.length];
+    ctx.globalAlpha = 0.45 + 0.5 * Math.random();
+    ctx.beginPath();
+    ctx.arc(Math.random() * W, Math.random() * H, 3 + Math.random() * 6, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+  const pad = 42, gap = 26;
+  const cw = (W - 2 * pad - gap) / 2, ch = (H - 2 * pad - gap) / 2;
+  shots.forEach((s, i) => {
+    const col = i % 2, row = (i / 2) | 0;
+    const x = pad + col * (cw + gap), y = pad + row * (ch + gap);
+    ctx.save();
+    roundRectPath(ctx, x, y, cw, ch, 24);
+    ctx.fillStyle = '#fff'; ctx.fill(); ctx.clip();
+    const sa = s.width / s.height, ta = cw / ch;
+    let dw, dh, dx, dy;
+    if (sa > ta) { dh = ch; dw = ch * sa; dx = x - (dw - cw) / 2; dy = y; }
+    else { dw = cw; dh = cw / sa; dx = x; dy = y - (dh - ch) / 2; }
+    ctx.drawImage(s, dx, dy, dw, dh);
+    ctx.restore();
+    ctx.save();
+    roundRectPath(ctx, x, y, cw, ch, 24);
+    ctx.lineWidth = 9; ctx.strokeStyle = '#fff'; ctx.stroke();
+    ctx.restore();
+  });
+  return c;
+}
+
+// ---------------------------------------------------------------- confetti 🎉
+function fireConfetti() {
+  const c = $('#confetti');
+  c.classList.remove('hidden');
+  const ctx = c.getContext('2d');
+  const dpr = Math.min(2, window.devicePixelRatio || 1);
+  c.width = window.innerWidth * dpr;
+  c.height = window.innerHeight * dpr;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const W = window.innerWidth, H = window.innerHeight;
+  const cols = ['#ff2d6f', '#ffd23f', '#3fa9ff', '#4cd964', '#a05cff', '#ff7a00', '#ff5cc8'];
+  const parts = [];
+  for (let i = 0; i < 130; i++) {
+    parts.push({
+      x: W * (0.15 + 0.7 * Math.random()), y: H * 0.3 + Math.random() * 40,
+      vx: (Math.random() - 0.5) * 9, vy: -7 - Math.random() * 10, g: 0.3,
+      rot: Math.random() * 6.3, vr: (Math.random() - 0.5) * 0.5,
+      w: 7 + Math.random() * 9, h: 9 + Math.random() * 11,
+      col: cols[i % cols.length], round: Math.random() < 0.4,
+    });
+  }
+  let startT = null;
+  function frame(t) {
+    if (startT === null) startT = t;
+    ctx.clearRect(0, 0, W, H);
+    for (const p of parts) {
+      p.vy += p.g; p.x += p.vx; p.y += p.vy; p.rot += p.vr;
+      ctx.save();
+      ctx.translate(p.x, p.y); ctx.rotate(p.rot); ctx.fillStyle = p.col;
+      if (p.round) { ctx.beginPath(); ctx.arc(0, 0, p.w / 2, 0, Math.PI * 2); ctx.fill(); }
+      else ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      ctx.restore();
+    }
+    if (t - startT < 1600) requestAnimationFrame(frame);
+    else c.classList.add('hidden');
+  }
+  requestAnimationFrame(frame);
 }
 
 // ---------------------------------------------------------------- autosave
@@ -296,14 +447,34 @@ function buildBrushes() {
   row.innerHTML = '';
   BRUSHES.forEach((br) => {
     const b = document.createElement('button');
-    b.className = 'chip' + (br.id === editor.brush ? ' active' : '');
-    b.textContent = `${br.icon} ${br.name}`;
+    b.className = 'chip brush-chip' + (br.id === editor.brush ? ' active' : '');
+    b.innerHTML = `<img class="ico" src="${br.icon}" alt=""><span>${br.name}</span>`;
     b.addEventListener('click', () => {
       editor.setTool('draw');
       editor.setBrush(br.id);
       buildBrushes();
     });
     row.appendChild(b);
+  });
+}
+
+function buildFrames() {
+  const grid = $('#frame-grid');
+  grid.innerHTML = '';
+  FRAMES.forEach((fr) => {
+    const b = document.createElement('button');
+    b.className = 'filter-btn frame-btn' + (fr.id === editor.frame ? ' active' : '');
+    const sw = document.createElement('span');
+    sw.className = 'sw' + (fr.id === 'none' ? ' none' : '');
+    if (fr.id !== 'none') {
+      const im = document.createElement('img');
+      im.src = frameAsset(fr.id); im.alt = '';
+      sw.appendChild(im);
+    }
+    b.appendChild(sw);
+    b.appendChild(document.createTextNode(fr.name));
+    b.addEventListener('click', () => { editor.setFrame(fr.id); buildFrames(); });
+    grid.appendChild(b);
   });
 }
 
@@ -376,8 +547,9 @@ $('#btn-redo').addEventListener('click', () => { editor.redo(); refreshHistoryBu
 // ---------------------------------------------------------------- done + gallery
 $('#btn-save').addEventListener('click', async () => {
   await doAutosave();
-  toast('Saved to My Photos! 🎉');
-  show('screen-camera');
+  fireConfetti();
+  toast('Saved to My Photos!');
+  setTimeout(() => show('screen-camera'), 550);
 });
 
 async function updateGalleryCount() {
@@ -480,10 +652,14 @@ if ('serviceWorker' in navigator) {
 
 // ---------------------------------------------------------------- boot
 function boot() {
-  editor.preloadAssets(STICKERS.map((s) => s.asset));
+  editor.preloadAssets([
+    ...STICKERS.map((s) => s.asset),
+    ...FRAMES.map((f) => frameAsset(f.id)).filter(Boolean),
+  ]);
   buildStickerCats();
   buildStickerGrid();
   buildFilters();
+  buildFrames();
   buildBrushes();
   buildColors();
   updateGalleryCount();
@@ -494,4 +670,7 @@ function boot() {
 boot();
 
 // Exposed for automated end-to-end verification. Harmless in production.
-window.__mae = { editor, gallery, detector, camera, capture, placeSticker, show, runCountdown };
+window.__mae = {
+  editor, gallery, detector, camera, capture, placeSticker, show, runCountdown,
+  grabFrame, buildCollage, fireConfetti, boothCapture,
+};

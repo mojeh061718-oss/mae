@@ -57,20 +57,37 @@ export const FILTERS = [
   { id: 'pop', name: 'Comic Pop', css: 'contrast(1.6) saturate(1.8) brightness(1.05)' },
   { id: 'pixel', name: 'Pixel', css: 'none', special: 'pixelate' },
   { id: 'posterize', name: 'Poster', css: 'none', special: 'posterize' },
+  { id: 'bighead', name: 'Big Head', css: 'none', special: 'bighead' },
+  { id: 'wavy', name: 'Wavy', css: 'none', special: 'wavy' },
 ];
 
 export function filterById(id) {
   return FILTERS.find((f) => f.id === id) || FILTERS[0];
 }
 
+// --------------------------------------------------------------------- frames
+export const FRAMES = [
+  { id: 'none', name: 'None' },
+  { id: 'polaroid', name: 'Polaroid' },
+  { id: 'rainbow', name: 'Rainbow' },
+  { id: 'hearts', name: 'Hearts' },
+  { id: 'stars', name: 'Stars' },
+  { id: 'clouds', name: 'Clouds' },
+  { id: 'gold', name: 'Gold' },
+  { id: 'confetti', name: 'Confetti' },
+];
+export function frameAsset(id) {
+  return id && id !== 'none' ? `assets/frames/${id}.svg` : null;
+}
+
 // --------------------------------------------------------------------- brushes
 export const BRUSHES = [
-  { id: 'crayon', name: 'Crayon', icon: '🖍️' },
-  { id: 'marker', name: 'Marker', icon: '🖊️' },
-  { id: 'neon', name: 'Neon', icon: '💡' },
-  { id: 'rainbow', name: 'Rainbow', icon: '🌈' },
-  { id: 'glitter', name: 'Glitter', icon: '✨' },
-  { id: 'eraser', name: 'Eraser', icon: '🧽' },
+  { id: 'crayon', name: 'Crayon', icon: 'assets/ui/brush-crayon.svg' },
+  { id: 'marker', name: 'Marker', icon: 'assets/ui/brush-marker.svg' },
+  { id: 'neon', name: 'Neon', icon: 'assets/ui/brush-neon.svg' },
+  { id: 'rainbow', name: 'Rainbow', icon: 'assets/ui/brush-rainbow.svg' },
+  { id: 'glitter', name: 'Glitter', icon: 'assets/ui/brush-glitter.svg' },
+  { id: 'eraser', name: 'Eraser', icon: 'assets/ui/brush-eraser.svg' },
 ];
 
 export const PAINT_COLORS = [
@@ -98,6 +115,8 @@ export class Editor {
     this.faces = [];
     this.placed = [];
     this.filter = 'none';
+    this.frame = 'none';
+    this._warp = null;
     this.selected = null;
 
     this.tool = 'sticker';
@@ -148,6 +167,8 @@ export class Editor {
     this.placed = [];
     this.faces = [];
     this.filter = 'none';
+    this.frame = 'none';
+    this._warp = null;
     this.selected = null;
     this.history = [];
     this.future = [];
@@ -222,6 +243,7 @@ export class Editor {
   }
 
   setFilter(id) { this.filter = id; this.render(); this._changed(); }
+  setFrame(id) { this.frame = id; this.render(); this._changed(); }
 
   setTool(tool) {
     this.tool = tool;
@@ -296,18 +318,75 @@ export class Editor {
     ctx.clearRect(0, 0, w, h);
 
     const f = filterById(this.filter);
-    ctx.save();
-    ctx.filter = f.css || 'none';
-    ctx.drawImage(this.base, 0, 0);
-    ctx.restore();
-
-    if (f.special === 'pixelate') this._applyPixelate(14);
-    if (f.special === 'posterize') this._applyPosterize(5);
+    if (f.special === 'bighead' || f.special === 'wavy') {
+      ctx.drawImage(this._ensureWarp(f.special), 0, 0);
+    } else {
+      ctx.save();
+      ctx.filter = f.css || 'none';
+      ctx.drawImage(this.base, 0, 0);
+      ctx.restore();
+      if (f.special === 'pixelate') this._applyPixelate(14);
+      if (f.special === 'posterize') this._applyPosterize(5);
+    }
 
     ctx.drawImage(this.paint, 0, 0);
 
     for (const p of this.placed) this._drawPlaced(p);
+
+    // decorative frame overlay (3:4 SVG with a transparent centre)
+    const fa = frameAsset(this.frame);
+    if (fa) {
+      const rec = this.assets.get(fa);
+      if (rec.ready) ctx.drawImage(rec.img, 0, 0, w, h);
+    }
+
     if (this.selected) this._drawSelection(this.selected);
+  }
+
+  // --- funny "magic mirror" warps, computed once and cached
+  _ensureWarp(type) {
+    if (this._warp && this._warp.id === type) return this._warp.canvas;
+    const canvas = this._computeWarp(type);
+    this._warp = { id: type, canvas };
+    return canvas;
+  }
+
+  _computeWarp(type) {
+    const w = this.width, h = this.height;
+    const src = this.baseCtx.getImageData(0, 0, w, h);
+    const sd = src.data;
+    const out = this.baseCtx.createImageData(w, h);
+    const od = out.data;
+    const cx = w / 2, cy = h * 0.42;            // aim at the face (upper centre)
+    const radius = Math.min(w, h) * 0.85;
+    for (let y = 0; y < h; y++) {
+      for (let x = 0; x < w; x++) {
+        let sx = x, sy = y;
+        if (type === 'bighead') {
+          const dx = x - cx, dy = y - cy;
+          const dist = Math.hypot(dx, dy);
+          if (dist < radius && dist > 0) {
+            const p = dist / radius;
+            const np = Math.pow(p, 1.8);        // magnify the centre
+            const k = (np * radius) / dist;
+            sx = cx + dx * k;
+            sy = cy + dy * k;
+          }
+        } else { // wavy
+          sx = x + Math.sin((y / h) * Math.PI * 6) * (w * 0.04);
+          sy = y + Math.sin((x / w) * Math.PI * 6) * (h * 0.02);
+        }
+        const ix = Math.max(0, Math.min(w - 1, sx | 0));
+        const iy = Math.max(0, Math.min(h - 1, sy | 0));
+        const si = (iy * w + ix) * 4;
+        const oi = (y * w + x) * 4;
+        od[oi] = sd[si]; od[oi + 1] = sd[si + 1]; od[oi + 2] = sd[si + 2]; od[oi + 3] = 255;
+      }
+    }
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    c.getContext('2d').putImageData(out, 0, 0);
+    return c;
   }
 
   _drawPlaced(p) {
